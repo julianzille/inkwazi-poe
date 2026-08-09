@@ -3,14 +3,13 @@
 - white tracks slightly larger
 - white has less "negative spacing" between side toes
 
-**Phinda Mongoose**
-Banded, water, white-tailed, slender
+**Phinda Mongooses**: banded, water, white-tailed, slender
 
 Guest expectations == hopes + possibilities
 
 Western boundary of Maputaland is the Lubumbo mountain range
 
-Lebombo wattle (*Newtonia hildebrandtii*)
+Lebombo wattle (*Newtonia hildebrandtii*)s
 Lavender fever berry (*Croton gratissimis*)
 
 5 endemic birds:
