@@ -1,5 +1,4 @@
 const files = [
-    "Inkwazi.md",
     "README.md",
     "&Beyond.md",
     "Birds.md",
@@ -23,7 +22,7 @@ function init() {
     renderSidebar();
     
     // Load initial file or hash
-    const initialFile = getFileFromHash() || "Inkwazi.md";
+    const initialFile = getFileFromHash() || "README.md";
     loadFile(initialFile);
     
     // Setup mobile menu
@@ -42,13 +41,16 @@ function init() {
 
 function getFileFromHash() {
     const hash = window.location.hash.slice(1);
-    return hash ? decodeURIComponent(hash) + '.md' : null;
+    const decoded = hash ? decodeURIComponent(hash) : null;
+    if (decoded === 'About') return 'README.md';
+    return decoded ? decoded + '.md' : null;
 }
 
 function renderSidebar() {
     navLinksContainer.innerHTML = '';
     files.forEach(file => {
-        const name = file.replace('.md', '');
+        let name = file.replace('.md', '');
+        if (file === 'README.md') name = 'About';
         const li = document.createElement('li');
         const a = document.createElement('a');
         
@@ -111,6 +113,10 @@ async function loadFile(filename) {
         // Brief timeout for transition effect
         setTimeout(() => {
             contentArea.innerHTML = html;
+            
+            // Make headings and lists collapsible
+            makeCollapsible();
+            
             loader.classList.remove('active');
             contentArea.classList.remove('hidden');
             
@@ -128,6 +134,61 @@ async function loadFile(filename) {
         `;
         contentArea.classList.remove('hidden');
     }
+}
+
+function makeCollapsible() {
+    // 1. Collapsible Headings
+    const headings = contentArea.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(heading => {
+        heading.classList.add('collapsible-heading');
+        
+        const toggle = document.createElement('span');
+        toggle.className = 'heading-toggle';
+        toggle.innerHTML = '▼';
+        heading.prepend(toggle);
+        
+        heading.addEventListener('click', () => {
+            heading.classList.toggle('collapsed');
+            
+            let currentLevel = parseInt(heading.tagName.substring(1));
+            let sibling = heading.nextElementSibling;
+            
+            while (sibling) {
+                if (/^H[1-6]$/.test(sibling.tagName)) {
+                    let siblingLevel = parseInt(sibling.tagName.substring(1));
+                    if (siblingLevel <= currentLevel) break;
+                }
+                
+                if (heading.classList.contains('collapsed')) {
+                    sibling.classList.add('hidden-by-heading');
+                } else {
+                    sibling.classList.remove('hidden-by-heading');
+                }
+                sibling = sibling.nextElementSibling;
+            }
+        });
+    });
+
+    // 2. Collapsible Nested Lists
+    const listItems = contentArea.querySelectorAll('li');
+    listItems.forEach(li => {
+        const nestedList = li.querySelector('ul, ol');
+        if (nestedList) {
+            li.classList.add('has-nested-list');
+            
+            const toggle = document.createElement('span');
+            toggle.className = 'list-toggle';
+            toggle.innerHTML = '▼';
+            
+            // Insert toggle before the text node of the li
+            li.insertBefore(toggle, li.firstChild);
+            
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                li.classList.toggle('collapsed');
+            });
+        }
+    });
 }
 
 // Configure marked options

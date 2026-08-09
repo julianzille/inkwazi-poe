@@ -126,6 +126,16 @@ body {
     font-weight: 500;
 }
 
+/* Sidebar Footer */
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(163, 177, 166, 0.4);
+    letter-spacing: 1px;
+}
+
 /* Main Content Area */
 .content-area {
     flex: 1;
@@ -334,4 +344,50 @@ body {
     .markdown-body h1 {
         font-size: 2.2rem;
     }
+}
+
+/* Collapsible Elements styling */
+.hidden-by-heading {
+    display: none !important;
+}
+
+.heading-toggle, .list-toggle {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 12px;
+    font-size: 0.6em;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+    user-select: none;
+    color: var(--text-secondary);
+}
+
+.heading-toggle:hover, .list-toggle:hover {
+    color: var(--accent);
+}
+
+.collapsed > .heading-toggle, .collapsed > .list-toggle {
+    transform: rotate(-90deg);
+}
+
+.collapsible-heading {
+    cursor: pointer;
+    position: relative;
+}
+
+.collapsible-heading:hover {
+    color: var(--accent-hover);
+}
+
+.has-nested-list {
+    list-style-type: none; /* Hide default bullet if we have a toggle */
+}
+
+.has-nested-list > ul, .has-nested-list > ol {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.has-nested-list.collapsed > ul, .has-nested-list.collapsed > ol {
+    display: none !important;
 }
