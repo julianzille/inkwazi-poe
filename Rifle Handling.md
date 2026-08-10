@@ -1,13 +1,14 @@
+TODO: add image of target from shooting range (10 Aug)
 ### Golden Safety Rules
 1. know the condition of the rifle at all times
-2. keep your finger away from the trigger unless you intend to fire a shot
-3. point the muzzle in a safe direction unless you intend to fire a shot
-4. rifle and ammo to be in perfect order at all times
-5. alcohol/drugs and weapons do not mix
-6. firing off a negligent shot is a dismissable offense
-7. pointing the rifle at a person on purpose, or using the rifle in a threatening way towards a person is a dismissable offense
-8. abandoning your rifle, ammo, safe-key is a dismissable offense
-9. adhere to countries firearm laws
+2. rifle and ammo to be in perfect order at all times
+3. alcohol/drugs and weapons do not mix
+4. adhere to countries firearm laws
+5. keep your finger away from the trigger unless you intend to fire a shot
+6. point the muzzle in a safe direction unless you intend to fire a shot
+7. firing off a negligent shot is a dismissable offense
+8. pointing the rifle at a person on purpose, or using the rifle in a threatening way towards a person is a dismissable offense
+9. abandoning your rifle, ammo, safe-key is a dismissable offense
 
 ### Rifle
 Safe handover:
@@ -57,7 +58,9 @@ Parts:
 	- bolt stop ejector
 	- breach (feed bullets into)
 	- chamber
-- lock:
+- lock
+	- sear (moved by trigger)
+	- sear release (in turn moved by sear). Releases cocking piece
 	- TODO
 ### Ammunition
 
@@ -71,13 +74,11 @@ Parts:
 Cycle the rounds: magazine > chamber > extract. **everytime you get the rifle and/or ammunition**
 
 #### Naming
-
 *PMP .375 H&H mag*
 - PMP: manufacturer (Pretoria Metal Press)
 - .375: diameter (inches) of bullet (or barrel from groove to groove)
 - H&H: designer (Holland & Holland)
 - mag: magnum, double the charge
-
 #### Parts
 Cartridge:
 - bullet
@@ -87,4 +88,12 @@ Cartridge:
 - primer
 - flash hole
 
+### Cleaning
 
+Quick clean before putting back in safe:
+- dust down
+- boresnake
+- small lick of trisol
+
+Heavy clean when exposed to elements
+- petrol bath

@@ -10,3 +10,15 @@
 | Elephant  | - raises trunk to smell<br>- may not turn to threat, but will maintain awareness (sight, sound, smell)                                 | - ears out, raises head to make bigger<br>- trumpeting<br>- dust / vegetation throwing<br>- head twisting                              | - tail raised<br>- charges, ears may be out or pinned trumpeting, head lower                            |
 | Snakes    | - freeze or slide away to avoid being seen<br>- increased tongue flicking (scent of threat)                                            | - hisses<br>- some prop up                                                                                                             | - strikes with fangs extended                                                                           |
 | Hyaena    | - walk perimeter with head lower, ears pricked up, staring at threat<br>- may "call"                                                   | - ears flattened back<br>- may aggressively clap teeth and chomp air<br>- raises hairs on back<br>- vocalises with laughter sounds<br> | - fast charge with tail up<br>- lots of vocal noise                                                     |
+
+### Animal Speeds
+
+| Animal   | Speed (km/h) | Speed (m/s) |
+| -------- | :----------: | :---------: |
+| Buffalo  |      56      |    15.6     |
+| Elephant |      40      |    11.1     |
+| Rhino    |      40      |    11.1     |
+| Leopard  |      80      |    22.2     |
+| Lion     |      80      |    22.2     |
+| Hippo    |      36      |     10      |
+3.6 kph == 1m/s
