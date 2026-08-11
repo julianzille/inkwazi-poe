@@ -4,7 +4,7 @@
 2. Rudd's apolis 
 3. Lemon breasted canary
 4. Woodwards batis
-5. pink throated twinspot
+5. Pink throated twinspot
 
 ### Bird Calls
 - Golden tailed woodpecker: *treasure chest opening* / *rusty nail pulled from wood*
@@ -19,4 +19,7 @@
 
 ### Bird List
 - White-bellied sunbird
+- Gorgeous bushshrike
+- Great white pelican
+	- has same wingspan as wandering albatross TODO fact-check
 - TODO

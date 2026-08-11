@@ -49,6 +49,12 @@ Why track animals with a tracker? To locate species that rest for long periods, 
 
 We track predators (lion, leopard, cheetah, wild dog) and black rhino. Other large herbivores (elephant, buffalo, white rhino etc) are generally on the move and generally viewable from land.
 
+Equipment:
+1. radio
+2. rifle+ammo
+3. ashbag
+4. binoculars
+
 ### Defensive Positions
 
 **#1**
