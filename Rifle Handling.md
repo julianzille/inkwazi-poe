@@ -91,9 +91,19 @@ Cartridge:
 ### Cleaning
 
 Quick clean before putting back in safe:
+- remove bolt
 - dust down
-- boresnake
+- boresnake down muzzle x3
 - small lick of trisol
 
-Heavy clean when exposed to elements
-- petrol bath
+After shooting
+- remove bolt
+- spray trisol through muzzle
+- cleaning rod + jag + copper brush
+- cleaning rod + jag + 2x4m (one direction)
+- re-assemble + lick of trisol 
+
+After exposure to elements
+- disassemble bolt + petrol bath
+- dry
+- lick of oil + re-assemble

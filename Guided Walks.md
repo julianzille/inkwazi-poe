@@ -15,7 +15,6 @@
 - safe handling
 - clean, well-maintained rifle
 - competent, confident, concise explanations
-
 #### Primary Concern
 Our primary concern is the safety of all involved (guests, tracker and animals)
 
@@ -48,6 +47,9 @@ Keys to neutrality:
 Why track animals with a tracker? To locate species that rest for long periods, which we may not see from road.
 
 We track predators (lion, leopard, cheetah, wild dog) and black rhino. Other large herbivores (elephant, buffalo, white rhino etc) are generally on the move and generally viewable from land.
+
+"Bamba iband" -- "take my belt"
+"iHlehla" -- "slowly"
 
 Equipment:
 1. radio
