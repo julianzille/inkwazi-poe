@@ -5,6 +5,7 @@ Mycium communication between trees: TODO
 ### Species
 
 Lebombo wattle (*Newtonia hildebrandtii*)
+- canopy tree -- abundant in Sand Forest
 - wine-red pods, flattened, elongated
 - paired
 

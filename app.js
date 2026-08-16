@@ -1,14 +1,46 @@
-const files = [
-    "README.md",
-    "&Beyond.md",
-    "Birds.md",
-    "Dangerous Animal Behavior.md",
-    "Guided Walks.md",
-    "Mammals.md",
-    "Rifle Handling.md",
-    "Test Review.md",
-    "Trees.md"
+const navigation = [
+    {
+        label: "Portfolio",
+        pages: [
+            { file: "README.md", label: "Overview" },
+            { file: "Assessments.md", label: "Assessments & reflections" }
+        ]
+    },
+    {
+        label: "Practical skills",
+        pages: [
+            { file: "Guided Walks.md", label: "Guided Walks" },
+            { file: "Rifle Handling.md", label: "Rifle Handling" },
+            { file: "Dangerous Animal Behavior.md", label: "Dangerous Animal Behaviour" }
+        ]
+    },
+    {
+        label: "Field knowledge",
+        pages: [
+            { file: "Mammals.md", label: "Mammals" },
+            { file: "Birds.md", label: "Birds" },
+            { file: "Trees.md", label: "Trees" },
+            { file: "Reptiles.md", label: "Reptiles" },
+            { file: "Arthropods.md", label: "Arthropods" }
+        ]
+    },
+    {
+        label: "Course context",
+        pages: [
+            { file: "&Beyond.md", label: "&Beyond" },
+            { file: "Inkwazi.md", label: "Inkwazi" }
+        ]
+    },
+    {
+        label: "Working area",
+        pages: [
+            { file: "Tasks.md", label: "Tasks" },
+            { file: "Random.md", label: "Scratch notes" }
+        ]
+    }
 ];
+
+const files = navigation.flatMap(section => section.pages.map(page => page.file));
 
 // Elements
 const navLinksContainer = document.getElementById('nav-links');
@@ -42,32 +74,43 @@ function init() {
 function getFileFromHash() {
     const hash = window.location.hash.slice(1);
     const decoded = hash ? decodeURIComponent(hash) : null;
-    if (decoded === 'About') return 'README.md';
-    return decoded ? decoded + '.md' : null;
+    if (decoded === 'About' || decoded === 'Overview') return 'README.md';
+    if (!decoded) return null;
+
+    const page = navigation
+        .flatMap(section => section.pages)
+        .find(({ file, label }) => file.replace('.md', '') === decoded || label === decoded);
+
+    return page ? page.file : null;
 }
 
 function renderSidebar() {
     navLinksContainer.innerHTML = '';
-    files.forEach(file => {
-        let name = file.replace('.md', '');
-        if (file === 'README.md') name = 'About';
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        
-        a.href = `#${encodeURIComponent(name)}`;
-        a.className = 'nav-link';
-        a.textContent = name;
-        a.dataset.file = file;
-        
-        a.addEventListener('click', (e) => {
-            // Mobile sidebar auto-close
-            if (window.innerWidth <= 900) {
-                sidebar.classList.remove('open');
-            }
+    navigation.forEach(section => {
+        const sectionTitle = document.createElement('li');
+        sectionTitle.className = 'nav-section-title';
+        sectionTitle.textContent = section.label;
+        navLinksContainer.appendChild(sectionTitle);
+
+        section.pages.forEach(({ file, label }) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+
+            a.href = `#${encodeURIComponent(label)}`;
+            a.className = 'nav-link';
+            a.textContent = label;
+            a.dataset.file = file;
+
+            a.addEventListener('click', () => {
+                // Mobile sidebar auto-close
+                if (window.innerWidth <= 900) {
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            li.appendChild(a);
+            navLinksContainer.appendChild(li);
         });
-        
-        li.appendChild(a);
-        navLinksContainer.appendChild(li);
     });
 }
 
@@ -86,8 +129,10 @@ function preprocessMarkdown(markdown) {
     // Convert Obsidian image embeds ![[image.png]] to standard markdown ![image.png](image.png)
     let processed = markdown.replace(/!\[\[(.*?)\]\]/g, '![$1]($1)');
     
-    // Convert Obsidian links [[Link]] to standard markdown [Link](#Link)
-    processed = processed.replace(/\[\[(.*?)\]\]/g, '[$1](#$1)');
+    // Convert Obsidian links [[Link]] to standard markdown with a URL-safe hash.
+    processed = processed.replace(/\[\[(.*?)\]\]/g, (_, linkText) => (
+        `[${linkText}](#${encodeURIComponent(linkText)})`
+    ));
     
     return processed;
 }

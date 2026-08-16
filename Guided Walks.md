@@ -9,7 +9,6 @@
 8. ashbag
 9. water
 10. radio
-
 ### Guest Experience
 - professionalism: maintain a neutral image
 - safe handling
@@ -32,7 +31,6 @@ Keys to neutrality:
 	- sight -- ensure animals can't see us
 	- sound -- being quiet enough not to be heard
 - NB skills: knowledge + understanding, comms, awareness
-
 ### Types of Walks
 
 **Grade 1**: *Nature walk*. Avoiding potentially dangerous animals.
@@ -59,17 +57,33 @@ Equipment:
 
 ### Defensive Positions
 
-**#1**
+#### 1
 - rifle tucked in shoulder, pointing muzzle down
 - "Should I be here"
 - Can't see the animal
-**#2**
+#### 2
 - can see the animal, but it is not advancing -- encounter that could escalate to confrontation
 - aim at animal's brain case
 - finger AWAY from trigger
 - calmly retreat
-**#3**
+#### 3
 - animals is charging -- confrontation that could escalate to engagement
 - stop still, chamber round, shout to animal, finger on trigger
 - if animal stops, engage safety, finger off trigger; if animal resumes, resume shouting, disengage safety, finger on trigger
 - **NB**: when neutrality restored, engage safety + finger off trigger, PoB, "twist, fist, safety, bolt", then "Make safe"
+
+### Grade 1 Walk Introduction
+
+1. Does anyone have any medical conditions, like asthma or bee-sting allergies, that I should know about?
+2. I suggest that you wear a hat and I have sunscreen if anybody needs, as well as water.
+3. There are ticks in the vegetation, so please check yourself for them at the end of the walk. I also have insect repellant if anybody needs (MAKE SURE YOU OFFER YOUR GUESTS INSECT REPELLANT FOR TICKS)
+4. What are you hoping to see? (Only if not yet covered)
+5. Route, timing, objective (This is a nature walk, avoiding potentially dangerous animals. Basic description of the terrain, looking at tracks and the smaller things, based on expectations)
+6. Is anyone carrying a camera? (if Yes) Please check with me before you take any photos.
+7. As we walk, please stay behind me and the rifle at all times.
+8. Please walk in single file or two lines on the roads, about an arms length apart and do not fall behind.
+9. Please keep the noise levels down.
+10. At times I may use hand signals and most will be easy to understand. One you may not recognize is this (demonstrate open flat hand down to the side) and it means FREEZE. I will use a natural sound like a click (fingers or tongue) to catch your attention.
+11. If anyone feels uncomfortable at any time, please let me know.
+12. Please follow any instructions I give without hesitation.
+13. Should we surprise an animal while we are walking, whatever you do, **DO NOT RUN**. Look at me and I will tell you exactly what to do.

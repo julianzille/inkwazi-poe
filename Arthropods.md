@@ -8,8 +8,8 @@
 | Wings and flight        | None                       | Most species have wings              |
 | Other appendages        |                            |                                      |
 | Metamorphic             | Incomplete metamorphosis   | Complete or incomplete metamorphosis |
-| Breathing apparatus     | TODO                       | TODO                                 |
-| Venomous or poisonous   | TODO                       | TODO                                 |
+| Breathing apparatus     | Book lungs / trachea       | Tracheal system with spiracles       |
+| Venomous or poisonous   | Venomous                   | Venomous or toxic stings             |
 | Antennae                | None                       | One pair                             |
 
 Typical spider:
@@ -32,7 +32,7 @@ Typical scorpion:
 	- carpace
 	- median eyes
 
-*Why don't spiders get stuck in their own webs?* TODO
+*Why don't spiders get stuck in their own webs?* Not all silk is sticky -- spiders avoid walking on sticky silk (for catching prey). In addition, spiders have moveable claws on feet that grip and release the web's thread as they walk.
 
 |                        | Ischnuridae | Bithidae | Scorpionidae |
 | ---------------------- | ----------- | -------- | ------------ |
@@ -70,8 +70,22 @@ Species found:
 	- mygalomorph
 - Millipede assasin (eats millipedes)
 - Polka dot butterfly
-- Jumping bean moth TODO
+- Jumping bean moth
+	- larvae live inside seed pods
 
-Two types of mimicry TODO
-Flash colouration of locust species TODO
-
+Anti-predator defences:
+- Mimicry
+	1. Batesian: a harmless, edible species evolves to look dangerous, toxic or pallatable. Eg moths with owl eyes on back of wings.
+	2. Müllerian: two or more dangerous, toxic or unpalatable species evolve to share similar warning signals or appearance. Eg several species of toxic frog share bright neon warning colors. 
+- Flash colouration of locust species:
+	- at rest, locust keeps colorful hind wings tucked to remain camouflaged 
+	- when predator gets too close, locust leaps and flies -- exposing colourful wings
+	- at rest, red wings are hidden, confusing predators
+- Aposematism: 
+	- bright warning colors, loud sounds (hissing )
+- Thanatosis
+	- feigning death
+- Autotomy (self-amputation)
+- Distraction displays
+	- feigning injury
+	- crowned lapwing

@@ -27,9 +27,10 @@ Lavender fever berry (*Croton gratissimis*)
 - fired 3/4 rounds in prone position with leaf sight up (rookie error)
 - shooting improved with kneeling (4/4 on target) and standing (2/4 on target) positions 
 - weak bolt action -- need to pull the bolt firmer
+![[Pasted image 20260816124059.png]]
 ---
-### Drainage Line Assessment
-
+### Predator Lane Tracking Assessment
+*13 August*
 What went well:
 - ammo check: 4P check + cycled rounds on all 10 rounds; persistent on needing 300grain monolithic solid
 - good scanning while walking, slowing down the pace of tracker
@@ -45,3 +46,17 @@ Room for improvement:
 - need an ashbag
 
 ---
+### Communication: Sand Forest Storytelling
+*15 August*
+
+2 min story about bikepacking through Germany, staying at Gertrude's house.
+What went well:
+- general delivery (non-verbal comms)
+- gripped audience
+- good content
+- comfortable storytelling
+
+Room for improvement + remediation:
+- fillers (um, and, so) -- break long sentences into smaller ones
+- cut the conclusion -- no need to force the conclusion
+- could be even more relaxed

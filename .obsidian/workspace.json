@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Birds.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Birds"
             }
           }
         ]
@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "greater",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,11 +79,12 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 214.05859375
   },
   "right": {
     "id": "a32f7df4c36f1680",
@@ -185,23 +186,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "a416d559827e3204",
+  "active": "c069986e68b602e0",
   "lastOpenFiles": [
     "Arthropods.md",
-    "README.md",
+    "Tasks.md",
     "Trees.md",
+    "Rifle Handling.md",
+    "Reptiles.md",
+    "Mammals.md",
+    "Birds.md",
+    "Assessments.md",
+    "Pasted image 20260816124059.png",
+    "Guided Walks.md",
+    "README.md",
     "&Beyond.md",
     "Inkwazi.md",
-    "Guided Walks.md",
     "Leaf diagram.png",
-    "Rifle Handling.md",
     "Dangerous Animal Behavior.md",
-    "Reptiles.md",
     "Untitled 1.md",
-    "Birds.md",
     "Random.md",
-    "Assessments.md",
-    "Mammals.md",
     "Test Review.md"
   ]
 }

@@ -1,4 +1,3 @@
-TODO: add image of target from shooting range (10 Aug)
 ### Golden Safety Rules
 1. know the condition of the rifle at all times
 2. rifle and ammo to be in perfect order at all times

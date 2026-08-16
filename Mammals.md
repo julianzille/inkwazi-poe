@@ -12,11 +12,11 @@ White vs black rhino tracks:
 	- sticky secretion from eyes stains cheeks
 	- *"mischievous"* in Hindu
 ##### Sightings
-Drainage line walk 1 (TODO)
+Drainage line walk 1 (*1 August*)
 - solo bull
 - not happy with us -- we quickly walked passed to de-escalate / maintain distance
 
-Drainage line walk 2 (TODO)
+Drainage line walk 2 (*2 August*)
 - elephant bull fully in musth
 - turned to us, lifted head, ears out 
 
@@ -24,12 +24,12 @@ Drainage line walk 2 (TODO)
 - diurnal hunters (only cats)
 - males singular or in bachelor groups (usually brothers); females solitary or with cubs
 ##### Sightings
-Date TODO, floodplain
+Week 1, floodplain
 - first driving day, midday
 - floodplains
 - solo individual (gender unconfirmed)
 
-Date TODO, open grassland location TODO
+Week 1, baseline gamedrive
 - mother and four cubs
 - staring at wildebeest
 #### Leopard
