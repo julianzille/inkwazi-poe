@@ -1,3 +1,6 @@
+- Phinda button spider: 
+	- discovered here
+	- large, carnivorous spider
 ### Worksheet (14 Aug)
 
 |                         | Arachnids                  | Insects                              |
@@ -34,18 +37,19 @@ Typical scorpion:
 
 *Why don't spiders get stuck in their own webs?* Not all silk is sticky -- spiders avoid walking on sticky silk (for catching prey). In addition, spiders have moveable claws on feet that grip and release the web's thread as they walk.
 
-|                        | Ischnuridae | Bithidae | Scorpionidae |
-| ---------------------- | ----------- | -------- | ------------ |
-| Preferred living areas |             |          |              |
-| Negatively geotaxic    |             |          |              |
-| Venom potency          |             |          |              |
-| Pedipalp size          |             |          |              |
-| Tail size              |             |          |              |
+|                                        | Ischnuridae                                         | Buthidae                                  | Scorpionidae                                      |
+| -------------------------------------- | --------------------------------------------------- | ----------------------------------------- | ------------------------------------------------- |
+| Preferred living areas                 | tropical / subtropical forests                      | arid deserts, savannas, found under rocks | burrows in soil, tropical rainforests, grasslands |
+| Negatively geotaxic (climb vertically) | yes -- climb vertical surfaces to fit into crevices | variable                                  | no -- ground dwelling, deep burrowing             |
+| Venom potency                          | very low                                            | high                                      | low / moderate                                    |
+| Pedipalp size                          | large, robust                                       | weak, slender                             | massive, bulbous                                  |
+| Tail size                              | thin and short                                      | thick and robust                          | thin and slender                                  |
 Scorpion reproduction:
 - give birth to live babies (oviparous)
 - babies stay with mother for 7-12 months
 - scorpion's genital opening is between 3rd set of legs from front
 
+![[Pasted image 20260823121445.png]]
 
 |                | Centipedes                                                                              | Millipedes                                                                       |
 | -------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |

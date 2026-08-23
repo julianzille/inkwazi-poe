@@ -147,8 +147,9 @@ async function loadFile(filename) {
     
     try {
         const response = await fetch(filename);
-        if (!response.ok) throw new Error('File not found');
-        
+        if (!response.ok) {
+            throw new Error('File not found: ', response);
+        }
         const rawMarkdown = await response.text();
         const processedMarkdown = preprocessMarkdown(rawMarkdown);
         

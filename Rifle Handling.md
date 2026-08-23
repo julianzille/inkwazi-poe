@@ -60,7 +60,6 @@ Parts:
 - lock
 	- sear (moved by trigger)
 	- sear release (in turn moved by sear). Releases cocking piece
-	- TODO
 ### Ammunition
 
 #### Checks
