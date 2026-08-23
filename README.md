@@ -4,6 +4,10 @@
 
 This portfolio records my learning, field observations and practical assessments from a six-week field guide course.
 
+## Session context
+
+Read [`SESSION_CONTEXT.md`](./SESSION_CONTEXT.md) before making changes. It explains the repository structure, the Obsidian markdown conventions, and the GitHub Pages rendering flow.
+
 ## How to use this portfolio
 
 The portfolio is organised by evidence type. Start with **Assessments & reflections** for practical feedback and development, then use the practical-skills and field-knowledge sections to review supporting notes and observations.
