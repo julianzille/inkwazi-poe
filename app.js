@@ -126,8 +126,18 @@ function updateActiveLink(filename) {
 
 // Pre-process Obsidian specific markdown
 function preprocessMarkdown(markdown) {
-    // Convert Obsidian image embeds ![[image.png]] to standard markdown ![image.png](image.png)
-    let processed = markdown.replace(/!\[\[(.*?)\]\]/g, '![$1]($1)');
+    // Convert Obsidian image embeds directly to HTML so filenames with spaces
+    // are rendered reliably by the browser after sanitization.
+    let processed = markdown.replace(/!\[\[(.*?)\]\]/g, (_, imagePath) => {
+        const safeSrc = encodeURI(imagePath.trim());
+        const safeAlt = imagePath.trim()
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+
+        return `<img src="${safeSrc}" alt="${safeAlt}">`;
+    });
     
     // Convert Obsidian links [[Link]] to standard markdown with a URL-safe hash.
     processed = processed.replace(/\[\[(.*?)\]\]/g, (_, linkText) => (
@@ -146,7 +156,9 @@ async function loadFile(filename) {
     loader.classList.add('active');
     
     try {
-        const response = await fetch(filename);
+        const response = await fetch(`${filename}?v=${Date.now()}`, {
+            cache: 'no-store'
+        });
         if (!response.ok) {
             throw new Error('File not found: ', response);
         }
