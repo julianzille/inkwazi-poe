@@ -1,37 +1,4 @@
 
-5 endemic birds:
-1. Neergaard sunbird
-2. Rudd's apolis 
-3. Lemon breasted canary
-4. Woodwards batis
-5. Pink throated twinspot
-
-African darter:
-- when hunting, removes preen (which is buoyant), wet-feathers serve as weight-belts. Re-preens post-hunt
-### Bird Calls
-- Golden tailed woodpecker: *treasure chest opening* / *rusty nail pulled from wood*
-- African emerald cuckoo: *"Hello Georgie"*
-- Greater Honeyguide: "*Vic-torrr, vic-torrr"*
-- Red capped robin chat: *See-saw*
-- Black back puffback: *click-whistle-repeat* rapidly
-- square-tailed nightjar: *rapid churring*
-- fiery-necked nightjar: *"Good lord deliver us*"
-- African gosshawk: territorial chirp while flying
-- Gorgeous bushrike: *ko-koweet-koweet*. 
-- Scaly-throated honeyguide: *frog-like crescendo*
-
-### Bird List
-- White-bellied sunbird
-- Gorgeous bushshrike
-- Great white pelican
-- Yellow bellied greenbul
-- Black winged stilt
-- Black bellied bustard
-- Crested barbet
-- Black crowned tchagra
-- African hoopoe
-- sparrowhawk
-- crowned hornbill
 ### Bird Worksheet
 *16 August*
 

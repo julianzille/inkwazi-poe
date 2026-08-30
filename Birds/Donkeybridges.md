@@ -1,0 +1,12 @@
+- Golden tailed woodpecker: *treasure chest opening* / *rusty nail pulled from wood*
+- African emerald cuckoo: *"Hello Georgie"*
+- Greater Honeyguide: "*Vic-torrr, vic-torrr"*
+- Red capped robin chat: *See-saw*
+- Black back puffback: *click-whistle-repeat* rapidly
+- square-tailed nightjar: *rapid churring*
+- fiery-necked nightjar: *"Good lord deliver us*"
+- African gosshawk: *territorial chirp while flying*
+- Gorgeous bushrike: *ko-koweet-koweet*. 
+- Scaly-throated honeyguide: *frog-like crescendo*
+- Rudd's apolis: *rapid repeated chirps like machine gun*
+- Lesser spotted swallow: *robotic chirps*

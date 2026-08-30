@@ -1,36 +1,23 @@
-# Inkwazi
+# Inkwazi Field Guide Portfolio of Evidence
 
-## Portfolio of Evidence
+A clean, web-based Portfolio of Evidence (POE) for the 6-week practical safari guide training at Inkwazi (&Beyond / Phinda).
 
-This portfolio records my learning, field observations and practical assessments from a six-week field guide course.
+## Structure
 
-## Session context
+- **Guiding & Safety**: Guided walks standards, rifle handling & CQB protocols, dangerous animal behavior matrix.
+- **Assessments**: Range shooting logs, predator lane walk, storytelling evaluation, week 1 knowledge test.
+- **Worksheets**: Comprehensive theory worksheets covering Arthropods, Birds, and Trees/Grasses.
+- **Species Guides**: Dedicated field notes for Mammals, Birds, Trees, Herpetology, and Astronomy.
 
-Read [`SESSION_CONTEXT.md`](./SESSION_CONTEXT.md) before making changes. It explains the repository structure, the Obsidian markdown conventions, and the GitHub Pages rendering flow.
+## GitHub Pages Deployment
 
-## How to use this portfolio
-
-The portfolio is organised by evidence type. Start with **Assessments & reflections** for practical feedback and development, then use the practical-skills and field-knowledge sections to review supporting notes and observations.
-
-## Evidence at a glance
-
-### Practical skills
-
-- [[Guided Walks]] — walk preparation, guest safety and defensive positions
-- [[Rifle Handling]] — safety rules, ammunition and cleaning procedures
-- [[Dangerous Animal Behavior]] — behaviour cues and appropriate responses
-
-### Field knowledge
-
-- [[Mammals]], [[Birds]], [[Trees]], [[Reptiles]] and [[Arthropods]] — species knowledge, identification features and sightings
-
-### Assessment and context
-
-- [[Assessments]] — test review, shooting-range results and drainage-line assessment reflection
-- [[&Beyond]] and [[Inkwazi]] — conservation and course context
-
-## Supporting preparation
-
-[Pre-Inkwazi Preparation](https://julianzille.github.io/bush-study/)
-
-Working tasks are kept separately in [[Tasks]] so that the evidence pages remain easy to review.
+1. Push all commits to GitHub:
+   ```bash
+   git push origin main
+   ```
+2. In your GitHub repository:
+   - Go to **Settings** > **Pages**
+   - Under **Build and deployment** > **Source**, select **Deploy from a branch**
+   - Select Branch: `main` and Folder: `/ (root)`
+   - Click **Save**
+3. Your portfolio will be live at `https://<your-username>.github.io/<repo-name>/`.

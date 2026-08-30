@@ -4,53 +4,121 @@
     "type": "split",
     "children": [
       {
-        "id": "88d82e37d62edfb2",
+        "id": "286593cb9ff02872",
         "type": "tabs",
         "children": [
           {
-            "id": "a416d559827e3204",
+            "id": "45b56a9729d3f3ed",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Trees.md",
+                "file": "Astronomy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Trees"
+              "title": "Astronomy"
             }
           },
           {
-            "id": "54ce2f9395333a6e",
+            "id": "8b0ec8dec7b52807",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mammals.md",
+                "file": "Assessments/Week 1 Knowledge Test.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Mammals"
+              "title": "Week 1 Knowledge Test"
             }
           },
           {
-            "id": "3ee6892a923c1615",
+            "id": "535297e93f9702eb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Trees.md",
+                "file": "Arthropods.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Trees"
+              "title": "Arthropods"
+            }
+          },
+          {
+            "id": "28fff6f0b1e8ce00",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Birds/Bird List.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bird List"
+            }
+          },
+          {
+            "id": "a6e984ed2fe71ffc",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Leaf diagram.png"
+              },
+              "icon": "lucide-image",
+              "title": "Leaf diagram"
+            }
+          },
+          {
+            "id": "b976c5c614a0e474",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Assessments/Shooting Range.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Shooting Range"
+            }
+          },
+          {
+            "id": "d2db48f90a7bc121",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mammals/Leopard.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Leopard"
+            }
+          },
+          {
+            "id": "f5b7f330b4f7985f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Mammals/Spotted Hyaena.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Spotted Hyaena"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -214,33 +282,52 @@
       "bases:Create new base": false
     }
   },
-  "active": "3ee6892a923c1615",
+  "active": "a6e984ed2fe71ffc",
   "lastOpenFiles": [
-    "SESSION_CONTEXT.md",
-    "Mammals.md",
-    "Arthropods.md",
+    "README.md",
+    "app.js",
+    "styles.css",
+    "index.html",
     "Trees.md",
-    "Pasted image 20260823123040.png",
-    "Pasted image 20260823123001.png",
-    "Rifle Handling.md",
-    "Birds.md",
-    "Pasted image 20260823121445.png",
-    "Pasted image 20260823120832.png",
-    "Astronomy.md",
-    "Pasted image 20260823084106.png",
     "Tasks.md",
-    "Amphibians.md",
+    "Anti-predator defense.md",
+    "Arthropods.md",
+    "Astronomy.md",
+    "Dangerous Animal Behavior.md",
+    "Guided Walks.md",
+    "Birds/General.md",
+    "Birds/Donkeybridges.md",
+    "Birds/Bird List.md",
+    "Birds",
+    "Rifle Handling.md",
     "Reptiles.md",
     "Assessments.md",
-    "Pasted image 20260816124059.png",
-    "Guided Walks.md",
-    "README.md",
+    "Amphibians.md",
     "&Beyond.md",
+    "Assessments/Sand Forest Storytelling.md",
+    "Assessments/Week 1 Knowledge Test.md",
+    "Assessments/Predator Lane.md",
+    "Assessments/Shooting Range.md",
+    "Assessments",
+    "Mammals/Cheetah.md",
     "Inkwazi.md",
-    "Leaf diagram.png",
-    "Dangerous Animal Behavior.md",
-    "Untitled 1.md",
+    "Mammals.md",
     "Random.md",
-    "Test Review.md"
+    "Mammals/White vs Black Rhino.md",
+    "Pasted image 20260830121902.png",
+    "Pasted image 20260830112636.png",
+    "Mammals",
+    "Worksheets",
+    "Leaf diagram.png",
+    "Pasted image 20260816124059.png",
+    "Pasted image 20260823084106.png",
+    "Pasted image 20260823120832.png",
+    "Pasted image 20260823121445.png",
+    "Pasted image 20260823123001.png",
+    "Pasted image 20260823123040.png",
+    "Pasted image 20260823132242.png",
+    "content/field-knowledge/trees",
+    "content/field-knowledge/reptiles",
+    "content/field-knowledge/mammals"
   ]
 }

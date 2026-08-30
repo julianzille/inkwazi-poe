@@ -11,7 +11,7 @@
 | Snakes    | - freeze or slide away to avoid being seen<br>- increased tongue flicking (scent of threat)                                            | - hisses<br>- some prop up                                                                                                             | - strikes with fangs extended                                                                           |
 | Hyaena    | - walk perimeter with head lower, ears pricked up, staring at threat<br>- may "call"                                                   | - ears flattened back<br>- may aggressively clap teeth and chomp air<br>- raises hairs on back<br>- vocalises with laughter sounds<br> | - fast charge with tail up<br>- lots of vocal noise                                                     |
 
-### Animal Speeds
+# Animal Speeds
 
 | Animal   | Speed (km/h) | Speed (m/s) |
 | -------- | :----------: | :---------: |
