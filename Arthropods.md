@@ -7,7 +7,6 @@ Crimson (or scarlet) winged butterfly
 ### Arthropods Day (14 Aug)
 
 Species found:
-- TODO: get photos from Andreas
 - Common barklice (family Psocidae)
 - Barrel cockroach (family Bantua)
 - Wolfspider

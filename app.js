@@ -14,7 +14,7 @@
             group: "Guiding & Safety",
             items: [
                 { id: "guided-walks", file: "Guided Walks.md", title: "Guided Walks Protocol", icon: "🧭", summary: "Briefing standards, walk grades, tracking & neutrality" },
-                { id: "rifle-handling", file: "Rifle Handling.md", title: "Rifle Handling & CQB", icon: "🎯", summary: ".375 H&H manual of arms, ammo checks, rapid fire" },
+                { id: "rifle-handling", file: "Rifle Handling.md", title: "Rifle Handling", icon: "🎯", summary: ".375 H&H manual of arms, ammo checks, rapid fire" },
                 { id: "dangerous-animals", file: "Dangerous Animal Behavior.md", title: "Dangerous Animal Behavior", icon: "⚠️", summary: "Awareness, confrontation & charge engagement matrix" }
             ]
         },
@@ -32,7 +32,8 @@
             items: [
                 { id: "ws-arthropods", file: "Worksheets/Arthropods.md", title: "Arthropods Worksheet", icon: "🦂", summary: "Anatomy, scorpion families & metamorphosis" },
                 { id: "ws-birds", file: "Worksheets/Birds.md", title: "Birds Worksheet", icon: "🦅", summary: "Avian morphology, raptors, nesting & Star Birds" },
-                { id: "ws-trees", file: "Worksheets/Trees.md", title: "Trees & Grasses Worksheet", icon: "🌿", summary: "Stem histology, veld ecology & chemical defense" }
+                { id: "ws-trees", file: "Worksheets/Trees.md", title: "Trees & Grasses Worksheet", icon: "🌿", summary: "Stem histology, veld ecology & chemical defense" },
+                { id: "ws-off-road-driving", file: "Worksheets/Off-road Driving.md", title: "Off-road Driving", icon: "🚙", summary: "4x4 vehicle operations, recovery & terrain driving" }
             ]
         },
         {
@@ -60,20 +61,20 @@
             folderTitle: "Birds",
             folderIcon: "🦜",
             items: [
-                { id: "bird-list", file: "Birds/Bird List.md", title: "Bird Checklist", icon: "📋", summary: "Recorded bird species list" },
+                { id: "bird-list", file: "Birds/Bird List.md", title: "Bird List", icon: "📋", summary: "Recorded bird species list" },
                 { id: "bird-donkeybridges", file: "Birds/Donkeybridges.md", title: "Bird Call Donkeybridges", icon: "🎵", summary: "Acoustic mnemonics for reserve calls" },
-                { id: "bird-general", file: "Birds/General.md", title: "Avian Biology & Flight", icon: "🪶", summary: "Darter plumage wetting & waterbird flight" }
+                { id: "bird-general", file: "Birds/General.md", title: "General Notes", icon: "🪶", summary: "Darter plumage wetting & waterbird flight" }
             ]
         },
         {
             group: "Botany & Ecology",
             items: [
-                { id: "flora-trees", file: "Trees.md", title: "Trees & Sand Forest Flora", icon: "🌳", summary: "Key species, ant-thorn symbiosis & leaf anatomy" },
+                { id: "flora-trees", file: "Trees.md", title: "Trees", icon: "🌳", summary: "Key species, ant-thorn symbiosis & leaf anatomy" },
                 { id: "eco-arthropods", file: "Arthropods.md", title: "Arthropods & Invertebrates", icon: "🕷️", summary: "Phinda button spider & field survey logs" },
                 { id: "eco-amphibians", file: "Amphibians.md", title: "Amphibians", icon: "🐸", summary: "Phinda rainfrog & foam nest frog thermoregulation" },
                 { id: "eco-reptiles", file: "Reptiles.md", title: "Reptiles", icon: "🐍", summary: "Southern African rock python reproduction" },
                 { id: "eco-anti-predator", file: "Anti-predator defense.md", title: "Anti-Predator Defenses", icon: "🛡️", summary: "Batesian/Müllerian mimicry, aposematism & thanatosis" },
-                { id: "eco-astronomy", file: "Astronomy.md", title: "Astronomy & Moon Phases", icon: "🌙", summary: "Lunar phases and night celestial navigation" }
+                { id: "eco-astronomy", file: "Astronomy.md", title: "Astronomy", icon: "🌙", summary: "Lunar phases and night celestial navigation" }
             ]
         },
         {
@@ -213,20 +214,38 @@
     // =========================================================================
     // Markdown Preprocessing & Enhancements
     // =========================================================================
+    function renderPdfViewer(src, title) {
+        return `<div class="pdf-viewer-container"><div class="pdf-toolbar"><span class="pdf-toolbar-title">📄 ${title}</span><div class="pdf-toolbar-actions"><a href="${src}" target="_blank" rel="noopener noreferrer" class="action-btn pdf-action-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span>Open in New Tab</span></a><a href="${src}" download class="action-btn pdf-action-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><span>Download PDF</span></a></div></div><iframe src="${src}#view=FitH" class="pdf-embed-frame" title="${title}" loading="lazy"></iframe></div>`;
+    }
+
     function preprocessMarkdown(raw) {
         let text = raw;
 
-        // 1. Convert Obsidian image embeds: ![[Image.png|width]] or ![[Image.png]]
+        // 1. Convert Obsidian embeds: ![[Image.png|width]] or ![[Document.pdf]]
         text = text.replace(/!\[\[([^\]|]+)(?:\|(\d+))?\]\]/g, (match, filename, width) => {
             const cleanFilename = filename.trim();
             const safeSrc = encodeURI(cleanFilename);
+            const isPdf = /\.pdf$/i.test(cleanFilename);
+
+            if (isPdf) {
+                return renderPdfViewer(safeSrc, cleanFilename);
+            }
+
             const styleAttr = width ? `style="max-width: min(${width}px, 100%);"` : '';
             return `<div class="image-container"><img src="${safeSrc}" alt="${cleanFilename}" ${styleAttr} loading="lazy" class="zoomable-image"><div class="image-caption">${cleanFilename.replace(/\.png$/i, '')}</div></div>`;
         });
 
-        // 2. Convert standard markdown images
+        // 2. Convert standard markdown images or pdf embeds
         text = text.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, src) => {
-            const safeSrc = encodeURI(src.trim());
+            const cleanSrc = src.trim();
+            const safeSrc = encodeURI(cleanSrc);
+            const isPdf = /\.pdf$/i.test(cleanSrc);
+
+            if (isPdf) {
+                const title = alt || cleanSrc;
+                return renderPdfViewer(safeSrc, title);
+            }
+
             return `<div class="image-container"><img src="${safeSrc}" alt="${alt}" loading="lazy" class="zoomable-image"><div class="image-caption">${alt}</div></div>`;
         });
 
@@ -264,7 +283,7 @@
         const headings = container.querySelectorAll('p, h2, h3, h4');
         headings.forEach(el => {
             const text = el.textContent.trim();
-            if (/^What went well:/i.test(text)) {
+            if (/^What went well/i.test(text)) {
                 el.classList.add('callout-box', 'callout-success');
             } else if (/^Room for improvement/i.test(text)) {
                 el.classList.add('callout-box', 'callout-warning');
@@ -323,6 +342,16 @@
         updateBreadcrumb(currentItem.group, currentItem.title);
         updatePager(currentItem);
 
+        // Direct PDF handling if file is a PDF
+        if (currentItem.file.toLowerCase().endsWith('.pdf')) {
+            const safeSrc = encodeURI(currentItem.file);
+            contentEl.innerHTML = `<h1>${currentItem.title}</h1>${renderPdfViewer(safeSrc, currentItem.title)}`;
+            loaderEl.classList.remove('active');
+            contentEl.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            return;
+        }
+
         try {
             const response = await fetch(encodeURI(currentItem.file) + '?t=' + Date.now());
             if (!response.ok) {
@@ -340,7 +369,8 @@
 
             const parsedHtml = marked.parse(processedMarkdown);
             contentEl.innerHTML = DOMPurify.sanitize(parsedHtml, {
-                ADD_ATTR: ['target', 'loading', 'style']
+                ADD_TAGS: ['iframe', 'object', 'embed', 'svg', 'path', 'line', 'polyline', 'rect', 'circle'],
+                ADD_ATTR: ['target', 'loading', 'style', 'src', 'title', 'frameborder', 'download', 'rel', 'class', 'viewBox', 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'd', 'points', 'x1', 'y1', 'x2', 'y2', 'x', 'y', 'width', 'height']
             });
 
             postProcessHtml(contentEl);

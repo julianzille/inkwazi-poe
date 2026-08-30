@@ -1,20 +1,23 @@
 
 ### Trees Worksheet
 1. ![[Pasted image 20260823123001.png]]
-2. Phloem: 
-   Cortex:
-   Cambium:
-   Pith:
-   Xylem:
-   Epidermis
-3. **Decoction**: boil parts to extract needed properties
-   **Emetic:** 
-   **Fomentation:**
-   **Poultice:** 
-   **Embrocation:** 
-   **Enema:**
-   **Infusion:**
-   **Dressing:**
+   
+2. Phloem: Transports sugars and nutrients throughout the plant.
+   Cortex: Ground tissue that stores food and provides support.
+   Cambium: Layer of dividing cells producing new vascular tissue.
+   Pith: Soft central tissue that stores and transports nutrients.
+   Xylem: Conducts water and dissolved minerals upward from roots.
+   Epidermis: Outer protective cell layer covering the plant body.
+   
+3. Decoction: Boil parts to extract needed properties.
+   Emetic: Substance induced to cause vomiting.
+   Fomentation: Warm, moist cloth applied externally to relieve pain.
+   Poultice: Moist herbal paste applied directly to skin.
+   Embrocation: Liquid liniment rubbed into skin for muscle aches.
+   Enema: Liquid injected into rectum to clear bowels.
+   Infusion: Steeped herbs in hot water like tea.
+   Dressing: Soft material applied directly to cover a wound.
+   
 4. Acacia is now "vachelia" or "senegalia":
 	   - releases bitter tannins when browsed which deter browsers from eating leaves. The crushed leaves also release ethylene into air, warning nearby trees (of same species) of browsing activity, causing them to release tannins themselves
 	   - thorns deter browsing activity

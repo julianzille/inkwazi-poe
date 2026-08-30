@@ -1,5 +1,3 @@
-
-Communication between trees: https://notebook.google.com/notebook/16e6a204-dd8e-4cad-a4ce-f15cbb32cda9
 # Species
 
 Lebombo wattle (*Newtonia hildebrandtii*)
@@ -43,7 +41,8 @@ Tamboti (*Spirostachys africana*)
 - nibbled on at base by porcupine
 - dark brown, cracked barked
 
-White stemmed guarri (*TODO*)
+White stemmed guarri (*Euclea crispa*)
+- whiteish silver stem
 
 Sneezewood (*Ptaeroxylon obliquum*)
 - leaves compound, opposite
@@ -54,5 +53,8 @@ Pepper bark (*Warburgia salutaris*)
 - edible leaves -- harvested for food / tea
 - medicinal properties
 - highly endangered (overharvested)
+
+Elephant's Pudding (*Cissus rotundafolia*)
+- evergreen succulent vine
 # Leaf Diagram
 ![[Leaf diagram.png]]

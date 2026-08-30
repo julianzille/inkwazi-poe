@@ -2,7 +2,7 @@
 
 2 min story about bikepacking through Germany, staying at Gertrude's house.
 
-**What went well:**
+**What went well**
 - general delivery (non-verbal comms)
 - gripped audience
 - good content

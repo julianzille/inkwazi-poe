@@ -18,7 +18,7 @@
 2. 
 ![[Pasted image 20260823121445.png]]
 
-3. Typical spider: (TODO diagram)
+3. Typical spider:
 	- eyes
 	- palp
 	- pedipalp

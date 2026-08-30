@@ -7,7 +7,12 @@
 	- This tendon strongly resists stretching when the giraffe tries to bend down.
 	- Throwing the head down generates momentum to force the stiff tendon to stretch.
 	- The stretched tendon then acts like a loaded spring to pull the head back up quickly if predators attack
-- modified axis-atlas joing to allow head to bend vertically to reach higher browse
+- modified axis-atlas joint to allow head to bend vertically to reach higher browse
+- thick saliva coats any swallowed thorns, which prevent internal cuts. Saliva also has antiseptic properties
+
+# Locomotion
+- entire weight supported on left, then right, then left legs (otherwise long legs would interfere with each other)
+- neck moves in synchrony with legs, helps maintain balance
 
 # Food
 - drink every 2-3 days. Extract water from leaves. 

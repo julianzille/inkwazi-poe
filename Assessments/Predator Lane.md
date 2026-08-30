@@ -1,6 +1,6 @@
 *13 August*
 
-**What went well:**
+**What went well**
 - ammo check: 4P check + cycled rounds on all 10 rounds; persistent on needing 300grain monolithic solid
 - good scanning while walking, slowing down the pace of tracker
 - 1st defensive position with lion
