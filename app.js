@@ -282,7 +282,7 @@
         return text;
     }
 
-    function postProcessHtml(container) {
+    function postProcessHtml(container, currentItem) {
         // 1. Wrap all tables in a responsive scroll container
         const tables = container.querySelectorAll('table');
         tables.forEach(table => {
@@ -313,11 +313,12 @@
             });
         });
 
-        // 4. Setup Trees List Test Mode & Interactive Controls
-        setupTreeListInteractivity(container);
+        // 4. Setup Trees List Test Mode & Interactive Controls (Only on Trees List page)
+        setupTreeListInteractivity(container, currentItem);
     }
 
-    function setupTreeListInteractivity(container) {
+    function setupTreeListInteractivity(container, currentItem) {
+        if (!currentItem || currentItem.id !== 'flora-trees-list') return;
         // Find all top-level paragraph or heading elements: "Common Name (*Scientific Name*)"
         const pElements = Array.from(container.querySelectorAll('p, h2, h3, h4'));
         const speciesNodes = [];
@@ -590,7 +591,7 @@
                 ADD_ATTR: ['target', 'loading', 'style', 'src', 'title', 'frameborder', 'download', 'rel', 'class', 'viewBox', 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'd', 'points', 'x1', 'y1', 'x2', 'y2', 'x', 'y', 'width', 'height']
             });
 
-            postProcessHtml(contentEl);
+            postProcessHtml(contentEl, currentItem);
 
             loaderEl.classList.remove('active');
             contentEl.style.display = 'block';
