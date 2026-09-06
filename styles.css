@@ -1150,7 +1150,7 @@ body {
     margin-bottom: 1.5rem;
     box-shadow: var(--shadow-subtle);
     position: sticky;
-    top: 70px;
+    top: 65px;
     z-index: 10;
 }
 
@@ -1174,6 +1174,7 @@ body {
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .mode-btn.active {
@@ -1184,7 +1185,7 @@ body {
 
 .tree-search-wrap {
     flex: 1;
-    min-width: 200px;
+    min-width: 180px;
     max-width: 320px;
 }
 
@@ -1249,22 +1250,16 @@ body {
     border-color: var(--accent-gold);
 }
 
-.species-card-accordion[open] {
+.species-card-accordion.open {
     border-color: var(--accent-green-light);
 }
 
-.species-card-summary {
+.species-card-header {
     padding: 14px 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    cursor: pointer;
-    user-select: none;
-    list-style: none;
-}
-
-.species-card-summary::-webkit-details-marker {
-    display: none;
+    gap: 12px;
 }
 
 .species-card-titles {
@@ -1272,6 +1267,8 @@ body {
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
 }
 
 .common-name-badge {
@@ -1279,7 +1276,7 @@ body {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-main);
-    transition: filter 0.25s ease;
+    transition: filter 0.25s ease, background 0.25s ease;
 }
 
 .sci-name-badge {
@@ -1293,11 +1290,17 @@ body {
     transition: filter 0.25s ease, background 0.25s ease;
 }
 
+.tree-list-wrapper[data-mode="test-sci"] .sci-name-badge,
+.tree-list-wrapper[data-mode="test-common"] .common-name-badge,
+.common-name-badge.masked,
+.sci-name-badge.masked {
+    cursor: pointer;
+}
+
 .common-name-badge.masked,
 .sci-name-badge.masked {
     filter: blur(6px);
     user-select: none;
-    cursor: pointer;
     background: var(--warning-bg) !important;
     border-color: var(--warning-border) !important;
     color: var(--warning-text) !important;
@@ -1308,20 +1311,53 @@ body {
     filter: blur(3px);
 }
 
-.notes-count-tag {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--text-muted);
+.notes-toggle-arrow {
     background: var(--bg-base);
-    padding: 4px 10px;
-    border-radius: 12px;
     border: 1px solid var(--border-light);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent-green);
+    transition: all 0.2s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.notes-toggle-arrow:hover {
+    background: var(--accent-green);
+    color: #ffffff;
+    border-color: var(--accent-green);
+}
+
+.arrow-icon {
+    transition: transform 0.25s ease;
+}
+
+.species-card-accordion.open .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.species-card-accordion.open .notes-toggle-arrow {
+    background: var(--accent-green);
+    color: #ffffff;
+    border-color: var(--accent-green);
 }
 
 .species-card-body {
-    padding: 12px 18px 16px 24px;
+    display: none;
+    padding: 14px 18px 16px 24px;
     border-top: 1px solid var(--border-subtle);
     background: var(--bg-card-subtle);
+}
+
+.species-card-accordion.open .species-card-body {
+    display: block;
 }
 
 .species-card-body ul {
@@ -1334,5 +1370,65 @@ body {
 .species-card-body li {
     margin-bottom: 4px;
 }
+
+@media (max-width: 640px) {
+    .tree-toolbar {
+        top: 60px;
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
+    .mode-switch-group {
+        width: 100%;
+    }
+
+    .mode-btn {
+        flex: 1;
+        padding: 8px 4px;
+        font-size: 0.78rem;
+        text-align: center;
+    }
+
+    .tree-search-wrap {
+        width: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .tree-actions-group {
+        width: 100%;
+    }
+
+    .action-sub-btn.expand-notes-btn {
+        width: 100%;
+        text-align: center;
+        padding: 8px 12px;
+    }
+
+    .species-card-header {
+        padding: 12px 14px;
+    }
+
+    .common-name-badge {
+        font-size: 1rem;
+    }
+
+    .sci-name-badge {
+        font-size: 0.85rem;
+        padding: 2px 8px;
+    }
+
+    .notes-toggle-arrow {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .species-card-body {
+        padding: 10px 14px 14px 18px;
+    }
+}
+
 
 

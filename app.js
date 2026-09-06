@@ -165,7 +165,7 @@
             if (section.isFolder) {
                 // Collapsible folder (e.g. Mammals, Birds)
                 const folderWrap = document.createElement('div');
-                folderWrap.className = 'nav-folder open';
+                folderWrap.className = 'nav-folder';
                 folderWrap.id = section.folderId;
 
                 const folderTitle = document.createElement('div');
@@ -360,7 +360,6 @@
         toolbar.className = 'tree-toolbar';
         toolbar.innerHTML = `
             <div class="mode-switch-group">
-                <button class="mode-btn active" data-mode="study" type="button">👁️ Study Mode</button>
                 <button class="mode-btn" data-mode="test-sci" type="button">🧠 Test Scientific</button>
                 <button class="mode-btn" data-mode="test-common" type="button">🧠 Test Common</button>
             </div>
@@ -376,17 +375,23 @@
         cardsContainer.className = 'species-cards-container';
 
         speciesNodes.forEach(item => {
-            const card = document.createElement('details');
+            const card = document.createElement('div');
             card.className = 'species-card-accordion';
 
-            const summary = document.createElement('summary');
-            summary.className = 'species-card-summary';
+            const summary = document.createElement('div');
+            summary.className = 'species-card-header';
             summary.innerHTML = `
                 <div class="species-card-titles">
                     <span class="common-name-badge">${item.commonName}</span>
                     <span class="sci-name-badge"><em>(${item.sciName})</em></span>
                 </div>
-                ${item.listEl ? '<span class="notes-count-tag">Notes ▾</span>' : ''}
+                ${item.listEl ? `
+                    <button class="notes-toggle-arrow" type="button" aria-label="Toggle notes" aria-expanded="false">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                ` : ''}
             `;
             card.appendChild(summary);
 
@@ -395,6 +400,15 @@
                 body.className = 'species-card-body';
                 body.appendChild(item.listEl.cloneNode(true));
                 card.appendChild(body);
+
+                const arrowBtn = summary.querySelector('.notes-toggle-arrow');
+                if (arrowBtn) {
+                    arrowBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const isOpen = card.classList.toggle('open');
+                        arrowBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    });
+                }
             }
 
             cardsContainer.appendChild(card);
@@ -423,6 +437,7 @@
 
         function setMode(mode) {
             currentMode = mode;
+            listWrapper.dataset.mode = mode;
             modeBtns.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.mode === mode);
             });
@@ -431,25 +446,38 @@
                 const commonBadge = card.querySelector('.common-name-badge');
                 const sciBadge = card.querySelector('.sci-name-badge');
 
-                commonBadge.classList.remove('masked');
-                sciBadge.classList.remove('masked');
+                if (commonBadge) commonBadge.classList.remove('masked');
+                if (sciBadge) sciBadge.classList.remove('masked');
 
-                if (mode === 'test-sci') {
+                if (mode === 'test-sci' && sciBadge) {
                     sciBadge.classList.add('masked');
-                } else if (mode === 'test-common') {
+                } else if (mode === 'test-common' && commonBadge) {
                     commonBadge.classList.add('masked');
                 }
             });
         }
 
         modeBtns.forEach(btn => {
-            btn.addEventListener('click', () => setMode(btn.dataset.mode));
+            btn.addEventListener('click', () => {
+                const targetMode = btn.dataset.mode;
+                if (currentMode === targetMode) {
+                    setMode('study');
+                } else {
+                    setMode(targetMode);
+                }
+            });
         });
 
         if (expandBtn) {
             expandBtn.addEventListener('click', () => {
                 allExpanded = !allExpanded;
-                allCards.forEach(card => card.open = allExpanded);
+                allCards.forEach(card => {
+                    if (card.querySelector('.species-card-body')) {
+                        card.classList.toggle('open', allExpanded);
+                        const arrowBtn = card.querySelector('.notes-toggle-arrow');
+                        if (arrowBtn) arrowBtn.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
+                    }
+                });
                 expandBtn.textContent = allExpanded ? '📁 Collapse All Notes' : '📂 Expand All Notes';
             });
         }
@@ -468,21 +496,23 @@
             const commonBadge = card.querySelector('.common-name-badge');
             const sciBadge = card.querySelector('.sci-name-badge');
 
-            commonBadge.addEventListener('click', (e) => {
-                if (commonBadge.classList.contains('masked')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    commonBadge.classList.remove('masked');
-                }
-            });
+            if (commonBadge) {
+                commonBadge.addEventListener('click', (e) => {
+                    if (currentMode !== 'study') {
+                        e.stopPropagation();
+                        commonBadge.classList.toggle('masked');
+                    }
+                });
+            }
 
-            sciBadge.addEventListener('click', (e) => {
-                if (sciBadge.classList.contains('masked')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    sciBadge.classList.remove('masked');
-                }
-            });
+            if (sciBadge) {
+                sciBadge.addEventListener('click', (e) => {
+                    if (currentMode !== 'study') {
+                        e.stopPropagation();
+                        sciBadge.classList.toggle('masked');
+                    }
+                });
+            }
         });
     }
 

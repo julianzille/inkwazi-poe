@@ -115,3 +115,7 @@ Weeping Boer-Bean (*Schotia brachypetala*)
 - up to 16m tall
 - single thick trunk that branches low down
 - flowers yield lots of nectar that 'weep' / drip from tree
+
+Natal mahogany (*Trichilia emetica*)
+- evergreen
+- dark green glossy leaves
