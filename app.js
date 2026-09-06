@@ -22,6 +22,7 @@
             group: "Assessments",
             items: [
                 { id: "eval-shooting", file: "Assessments/Shooting Range.md", title: "Shooting Range Qualification", icon: "📋", summary: "Prone, kneeling, standing scores & target evidence" },
+                { id: "eval-rapid-fire", file: "Assessments/Rapid Fire Practice.md", title: "Rapid Fire Practice", icon: "🎯", summary: "Rapid fire shooting drill qualification & target assessment" },
                 { id: "eval-predator-lane", file: "Assessments/Predator Lane.md", title: "Predator Lane Walk", icon: "🐾", summary: "Tracking, situational awareness & debrief findings" },
                 { id: "eval-storytelling", file: "Assessments/Sand Forest Storytelling.md", title: "Sand Forest Storytelling", icon: "📖", summary: "Guest engagement & narrative delivery feedback" },
                 { id: "eval-knowledge-test", file: "Assessments/Week 1 Knowledge Test.md", title: "Week 1 Knowledge Test", icon: "📝", summary: "Endemics, tracks & regional biodiversity test" }
@@ -71,9 +72,19 @@
             ]
         },
         {
+            group: "Trees",
+            isFolder: true,
+            folderId: "folder-trees",
+            folderTitle: "Trees",
+            folderIcon: "🌳",
+            items: [
+                { id: "flora-trees", file: "Trees/Trees.md", title: "Trees & Species Notes", icon: "🌳", summary: "Key species, ant-thorn symbiosis & leaf anatomy" },
+                { id: "flora-trees-list", file: "Trees/Trees List.md", title: "Trees List", icon: "📋", summary: "Interactive species list & scientific name recall test" }
+            ]
+        },
+        {
             group: "Botany & Ecology",
             items: [
-                { id: "flora-trees", file: "Trees.md", title: "Trees", icon: "🌳", summary: "Key species, ant-thorn symbiosis & leaf anatomy" },
                 { id: "eco-arthropods", file: "Arthropods.md", title: "Arthropods & Invertebrates", icon: "🕷️", summary: "Phinda button spider & field survey logs" },
                 { id: "eco-amphibians", file: "Amphibians.md", title: "Amphibians", icon: "🐸", summary: "Phinda rainfrog & foam nest frog thermoregulation" },
                 { id: "eco-reptiles", file: "Reptiles.md", title: "Reptiles", icon: "🐍", summary: "Southern African rock python reproduction" },
@@ -299,6 +310,178 @@
         images.forEach(img => {
             img.addEventListener('click', () => {
                 openLightbox(img.src, img.alt || img.getAttribute('title') || 'Evidence Diagram');
+            });
+        });
+
+        // 4. Setup Trees List Test Mode & Interactive Controls
+        setupTreeListInteractivity(container);
+    }
+
+    function setupTreeListInteractivity(container) {
+        // Find all top-level paragraph or heading elements: "Common Name (*Scientific Name*)"
+        const pElements = Array.from(container.querySelectorAll('p, h2, h3, h4'));
+        const speciesNodes = [];
+
+        pElements.forEach(p => {
+            if (p.closest('.tree-list-wrapper')) return;
+
+            const html = p.innerHTML.trim();
+            const match = html.match(/^([^()]+?)\s*\((?:<em>|\*)(.*?)(?:<\/em>|\*)\)/i);
+            if (match) {
+                const commonName = match[1].replace(/<[^>]+>/g, '').trim();
+                const sciName = match[2].replace(/<[^>]+>/g, '').trim();
+
+                let nextEl = p.nextElementSibling;
+                let listEl = null;
+                if (nextEl && nextEl.tagName === 'UL') {
+                    listEl = nextEl;
+                }
+
+                speciesNodes.push({
+                    titleEl: p,
+                    listEl: listEl,
+                    commonName: commonName,
+                    sciName: sciName
+                });
+            }
+        });
+
+        if (speciesNodes.length === 0) return;
+
+        // Remove any old wrapper if re-rendering
+        const oldWrapper = container.querySelector('.tree-list-wrapper');
+        if (oldWrapper) oldWrapper.remove();
+
+        // Create main wrapper & control toolbar
+        const listWrapper = document.createElement('div');
+        listWrapper.className = 'tree-list-wrapper';
+
+        const toolbar = document.createElement('div');
+        toolbar.className = 'tree-toolbar';
+        toolbar.innerHTML = `
+            <div class="mode-switch-group">
+                <button class="mode-btn active" data-mode="study" type="button">👁️ Study Mode</button>
+                <button class="mode-btn" data-mode="test-sci" type="button">🧠 Test Scientific</button>
+                <button class="mode-btn" data-mode="test-common" type="button">🧠 Test Common</button>
+            </div>
+            <div class="tree-search-wrap">
+                <input type="text" class="tree-search-input" placeholder="Quick search species or notes..." aria-label="Search species">
+            </div>
+            <div class="tree-actions-group">
+                <button class="action-sub-btn expand-notes-btn" type="button">📂 Expand All Notes</button>
+            </div>
+        `;
+
+        const cardsContainer = document.createElement('div');
+        cardsContainer.className = 'species-cards-container';
+
+        speciesNodes.forEach(item => {
+            const card = document.createElement('details');
+            card.className = 'species-card-accordion';
+
+            const summary = document.createElement('summary');
+            summary.className = 'species-card-summary';
+            summary.innerHTML = `
+                <div class="species-card-titles">
+                    <span class="common-name-badge">${item.commonName}</span>
+                    <span class="sci-name-badge"><em>(${item.sciName})</em></span>
+                </div>
+                ${item.listEl ? '<span class="notes-count-tag">Notes ▾</span>' : ''}
+            `;
+            card.appendChild(summary);
+
+            if (item.listEl) {
+                const body = document.createElement('div');
+                body.className = 'species-card-body';
+                body.appendChild(item.listEl.cloneNode(true));
+                card.appendChild(body);
+            }
+
+            cardsContainer.appendChild(card);
+
+            item.titleEl.style.display = 'none';
+            if (item.listEl) item.listEl.style.display = 'none';
+        });
+
+        listWrapper.appendChild(toolbar);
+        listWrapper.appendChild(cardsContainer);
+
+        const h1 = container.querySelector('h1');
+        if (h1 && h1.nextSibling) {
+            container.insertBefore(listWrapper, h1.nextSibling);
+        } else {
+            container.appendChild(listWrapper);
+        }
+
+        let currentMode = 'study';
+        let allExpanded = false;
+
+        const modeBtns = toolbar.querySelectorAll('.mode-btn');
+        const expandBtn = toolbar.querySelector('.expand-notes-btn');
+        const searchInput = toolbar.querySelector('.tree-search-input');
+        const allCards = cardsContainer.querySelectorAll('.species-card-accordion');
+
+        function setMode(mode) {
+            currentMode = mode;
+            modeBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+
+            allCards.forEach(card => {
+                const commonBadge = card.querySelector('.common-name-badge');
+                const sciBadge = card.querySelector('.sci-name-badge');
+
+                commonBadge.classList.remove('masked');
+                sciBadge.classList.remove('masked');
+
+                if (mode === 'test-sci') {
+                    sciBadge.classList.add('masked');
+                } else if (mode === 'test-common') {
+                    commonBadge.classList.add('masked');
+                }
+            });
+        }
+
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => setMode(btn.dataset.mode));
+        });
+
+        if (expandBtn) {
+            expandBtn.addEventListener('click', () => {
+                allExpanded = !allExpanded;
+                allCards.forEach(card => card.open = allExpanded);
+                expandBtn.textContent = allExpanded ? '📁 Collapse All Notes' : '📂 Expand All Notes';
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const q = e.target.value.toLowerCase().trim();
+                allCards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    card.style.display = text.includes(q) ? 'block' : 'none';
+                });
+            });
+        }
+
+        allCards.forEach(card => {
+            const commonBadge = card.querySelector('.common-name-badge');
+            const sciBadge = card.querySelector('.sci-name-badge');
+
+            commonBadge.addEventListener('click', (e) => {
+                if (commonBadge.classList.contains('masked')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    commonBadge.classList.remove('masked');
+                }
+            });
+
+            sciBadge.addEventListener('click', (e) => {
+                if (sciBadge.classList.contains('masked')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    sciBadge.classList.remove('masked');
+                }
             });
         });
     }

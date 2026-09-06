@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mammals/White Rhino.md",
+                "file": "Trees/Trees List.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "White Rhino"
+              "title": "Trees List"
             }
           }
         ]
@@ -55,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "todo",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,12 +79,12 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "a32f7df4c36f1680",
@@ -188,6 +188,13 @@
   },
   "active": "8fcb7a0e239bef6f",
   "lastOpenFiles": [
+    "Trees/Trees.md",
+    "Tasks.md",
+    "Mammals/White Rhino.md",
+    "Assessments/Rapid Fire Practice.md",
+    "rapid-fire-practice.pdf",
+    "Trees/Trees List.md",
+    "Trees",
     "Reptiles.md",
     "Mammals/Lion.md",
     "Mammals/Cheetah.md",
@@ -200,12 +207,10 @@
     "Birds/Donkeybridges.md",
     "Rifle Handling.md",
     "bird-list-6-sep",
-    "Mammals/White Rhino.md",
     "Mammals/Plains Zebra.md",
     "Mammals/Hippo.md",
     "Anti-predator defense.md",
     "Mammals/Spotted Hyaena.md",
-    "Tasks.md",
     "Mammals/Giraffe.md",
     "Mammals/Buffalo.md",
     "&Beyond.md",
@@ -213,11 +218,8 @@
     "Birds/Bird List.md",
     "Mammals/Leopard.md",
     "Dangerous Animal Behavior.md",
-    "Worksheets/Off-road Driving.md",
     "off-road-driving.pdf",
     "Unconfirmed 563120.crdownload",
-    "Driving.md",
-    "Birds/General.md",
     "Leaf diagram.png",
     "app.js",
     "styles.css",
@@ -226,8 +228,6 @@
     "Assessments",
     "Pasted image 20260830121902.png",
     "Pasted image 20260830112636.png",
-    "Mammals",
-    "Worksheets",
     "Pasted image 20260816124059.png",
     "Pasted image 20260823084106.png",
     "Pasted image 20260823120832.png",

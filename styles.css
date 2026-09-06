@@ -1128,3 +1128,211 @@ body {
         page-break-inside: avoid;
     }
 }
+
+/* ==========================================================================
+   Trees List & Scientific/Common Recall Test Mode
+   ========================================================================== */
+
+.tree-list-wrapper {
+    margin-top: 1.2rem;
+}
+
+.tree-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-subtle);
+    position: sticky;
+    top: 70px;
+    z-index: 10;
+}
+
+.mode-switch-group {
+    display: flex;
+    background: var(--bg-base);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-light);
+    gap: 4px;
+}
+
+.mode-btn {
+    background: none;
+    border: none;
+    padding: 6px 14px;
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+    background: var(--accent-green);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(31, 71, 51, 0.2);
+}
+
+.tree-search-wrap {
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+}
+
+.tree-search-input {
+    width: 100%;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-light);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    background: var(--bg-base);
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.tree-search-input:focus {
+    border-color: var(--accent-gold);
+    background: #ffffff;
+}
+
+.tree-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-sub-btn {
+    background: var(--bg-base);
+    border: 1px solid var(--border-light);
+    color: var(--text-main);
+    padding: 6px 12px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-sub-btn:hover {
+    background: var(--border-subtle);
+    border-color: var(--accent-gold);
+}
+
+.species-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.species-card-accordion {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.species-card-accordion:hover {
+    border-color: var(--accent-gold);
+}
+
+.species-card-accordion[open] {
+    border-color: var(--accent-green-light);
+}
+
+.species-card-summary {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+}
+
+.species-card-summary::-webkit-details-marker {
+    display: none;
+}
+
+.species-card-titles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.common-name-badge {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: filter 0.25s ease;
+}
+
+.sci-name-badge {
+    font-size: 0.95rem;
+    color: var(--accent-green-light);
+    font-style: italic;
+    background: rgba(44, 99, 71, 0.08);
+    padding: 3px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(44, 99, 71, 0.2);
+    transition: filter 0.25s ease, background 0.25s ease;
+}
+
+.common-name-badge.masked,
+.sci-name-badge.masked {
+    filter: blur(6px);
+    user-select: none;
+    cursor: pointer;
+    background: var(--warning-bg) !important;
+    border-color: var(--warning-border) !important;
+    color: var(--warning-text) !important;
+}
+
+.common-name-badge.masked:hover,
+.sci-name-badge.masked:hover {
+    filter: blur(3px);
+}
+
+.notes-count-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-base);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+}
+
+.species-card-body {
+    padding: 12px 18px 16px 24px;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-card-subtle);
+}
+
+.species-card-body ul {
+    list-style: disc;
+    margin-left: 1rem;
+    color: var(--text-main);
+    font-size: 0.92rem;
+}
+
+.species-card-body li {
+    margin-bottom: 4px;
+}
+
+
