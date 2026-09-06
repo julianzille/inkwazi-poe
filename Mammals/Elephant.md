@@ -43,7 +43,7 @@
 - female in oestrus knows how to call musth mature, powerful bulls individually
 # Encounters
 Drainage line walk #1 (*1 August*)
-- solo bull in thicket
+- solo bull in thicket off Hamerkop Road
 - aware of us before we were aware of it. 
 - warning displays with ears spread out. We quickly walked passed to de-escalate / maintain distance
 

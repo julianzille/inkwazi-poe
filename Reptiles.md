@@ -5,3 +5,7 @@
 - reduced activity during winter
 - mate in winter months
 
+# Leopard Tortioise
+- move to open areas before rain (TODO: research this)
+- Afrikaans: *Berg skilpad*
+- 

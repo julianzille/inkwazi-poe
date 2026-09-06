@@ -10,6 +10,16 @@
 - modified axis-atlas joint to allow head to bend vertically to reach higher browse
 - thick saliva coats any swallowed thorns, which prevent internal cuts. Saliva also has antiseptic properties
 
+# Social Structure
+- highly gregarious -- nonterritorial, loose, open herds
+- little coordination in movements
+- males 
+
+# Behavior
+- lie down for part of the night -- ruminate
+- males "neck" for position in dominance hierarchy, although mature bulls avoid conflict and know their position
+- 
+
 # Locomotion
 - entire weight supported on left, then right, then left legs (otherwise long legs would interfere with each other)
 - neck moves in synchrony with legs, helps maintain balance

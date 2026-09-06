@@ -5,6 +5,10 @@ Lebombo wattle (*Newtonia hildebrandtii*)
 - wine-red pods, flattened, elongated
 - paired
 
+Buffalo thorn (*Ziziphus mucronata*)
+- spines paired -- one straight, one hooked
+- TODO: 'buffalo': 
+
 Lavender feverberry (*Croton gratissimis*)
 
 Balloon thorn (*Vachellia luederitzii*)
@@ -45,9 +49,10 @@ White stemmed guarri (*Euclea crispa*)
 - whiteish silver stem
 
 Sneezewood (*Ptaeroxylon obliquum*)
-- leaves compound, opposite
+- leaves compound, opposite, 'lobsided' (obliquum = lopsided)
 - sawdust causes severe sneezing
 - incredibly smooth
+- branches grow vertically 
 
 Pepper bark (*Warburgia salutaris*)
 - edible leaves -- harvested for food / tea
@@ -56,5 +61,44 @@ Pepper bark (*Warburgia salutaris*)
 
 Elephant's Pudding (*Cissus rotundafolia*)
 - evergreen succulent vine
+
+Torchwood / Green-thorn (*Balanites maughamii*)
+- trunk looks like Olympic flame
+- dry kernels burnt as torches (hence name)
+
+Swazi ordeal (*Erythrophleum lasianthum*)
+- large, round-crowned, drooping trees
+- dark green, glossy leaves
+- Sand Forest
+- Used for trials by ordeal TODO: check this
+
+Black Monkey Orange (*Strychnos madagascariensis*)
+- TODO
+
+Green Monkey Orange (*Strychnos spinosa*)
+- TODO
+
+Spider Flower Poision Rope (*Strophanthus gerrardii*)
+- alien, starfish like flower; demigorgon
+
+Sausage tree
+
+Sicamore Fig
+
+False Tamboti
+
+
+
+---
+Sand num-num (*Carissa tetramera*) vs Num-num (*Carissa bispinossa*):
+- sand num-num has narrower, longer leaves than num-num
+- TODO
+---
+Black vs Green Monkey Orange
+- TODO
+
+---
+False Tamboti vs Tamboti
+- TODO
 # Leaf Diagram
 ![[Leaf diagram.png]]

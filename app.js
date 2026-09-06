@@ -33,7 +33,9 @@
                 { id: "ws-arthropods", file: "Worksheets/Arthropods.md", title: "Arthropods Worksheet", icon: "🦂", summary: "Anatomy, scorpion families & metamorphosis" },
                 { id: "ws-birds", file: "Worksheets/Birds.md", title: "Birds Worksheet", icon: "🦅", summary: "Avian morphology, raptors, nesting & Star Birds" },
                 { id: "ws-trees", file: "Worksheets/Trees.md", title: "Trees & Grasses Worksheet", icon: "🌿", summary: "Stem histology, veld ecology & chemical defense" },
-                { id: "ws-off-road-driving", file: "Worksheets/Off-road Driving.md", title: "Off-road Driving", icon: "🚙", summary: "4x4 vehicle operations, recovery & terrain driving" }
+                { id: "ws-astronomy", file: "Worksheets/Astronomy.md", title: "Astronomy Worksheet", icon: "🌌", summary: "Celestial bodies, moon phases, solar system & satellites" },
+                { id: "ws-off-road-driving", file: "Worksheets/Off-road Driving.md", title: "Off-road Driving", icon: "🚙", summary: "4x4 vehicle operations, recovery & terrain driving" },
+                { id: "ws-night-drives", file: "Worksheets/Night Drives.md", title: "Night Drives", icon: "🌙", summary: "Spotlighting protocols, nocturnal animal safety & night driving" }
             ]
         },
         {

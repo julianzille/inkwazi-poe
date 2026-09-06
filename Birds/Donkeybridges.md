@@ -10,3 +10,8 @@
 - Scaly-throated honeyguide: *frog-like crescendo*
 - Rudd's apolis: *rapid repeated chirps like machine gun*
 - Lesser spotted swallow: *robotic chirps*
+- Orange breasted bushrike: *3x whistle, roughly same tone. "What to dooo"*
+
+- Crested guineafowl: *kek-kek-kek. Slightly deeper voice than helmeted guineafowl*
+- Helmeted guineafowl: *high pitched whistle, followed by rapid kek-kek-kek*
+- Crested francolin: *rhythmic. high pitched screeching.*

@@ -88,3 +88,6 @@ Equipment:
 11. If anyone feels uncomfortable at any time, please let me know.
 12. Please follow any instructions I give without hesitation.
 13. Should we surprise an animal while we are walking, whatever you do, **DO NOT RUN**. Look at me and I will tell you exactly what to do.
+---
+
+# Tenenberg's questions

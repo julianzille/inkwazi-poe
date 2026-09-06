@@ -28,7 +28,7 @@
 
 4. *Why don't spiders get stuck in their own webs?* Not all silk is sticky -- spiders avoid walking on sticky silk (for catching prey). In addition, spiders have moveable claws on feet that grip and release the web's thread as they walk.
 
-5. Typical scorpion: (TODO diagram)
+5. Typical scorpion:
 	- Pedipalp
 		- pincers
 		- pedipalp finger
