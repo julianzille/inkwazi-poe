@@ -13,9 +13,9 @@
 # Social structure
 - males singular or in bachelor groups (usually brothers); females solitary or with cubs
 - at ~1.5 years
+	- all siblings abandoned by mother, sticky together for several months
 	- (when first coming into heat) female separates from littermates and avoid contact with both sexes, except to mate.
-	- male littermates separate and form coalitions for several months
-- TODO: add timing when mother leaves cubs, what age males form coalitions, what do females do 
+	- male littermates separate and form coalitions 
 # Sightings
 Week 1, floodplain
 - first driving day, midday

@@ -6,6 +6,5 @@
 - mate in winter months
 
 # Leopard Tortioise
-- move to open areas before rain (TODO: research this)
+- move to open areas before rain (not scientifically backed -- more folklore)
 - Afrikaans: *Berg skilpad*
-- 

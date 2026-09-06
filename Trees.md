@@ -3,11 +3,10 @@
 Lebombo wattle (*Newtonia hildebrandtii*)
 - canopy tree -- abundant in Sand Forest
 - wine-red pods, flattened, elongated
-- paired
 
 Buffalo thorn (*Ziziphus mucronata*)
 - spines paired -- one straight, one hooked
-- TODO: 'buffalo': 
+- 'buffalo' -- defensive behaviour of buffalos backing into tree when cornered by predators.
 
 Lavender feverberry (*Croton gratissimis*)
 
@@ -33,7 +32,7 @@ Ribbed currant (*Searsia pallens*)
 - trifoliolate leaves
 - orange lenticels
 
-Thorny karee (Searsia guenzii)
+Thorny karee (*Searsia guenzii*)
 - trifoliolate leaves (more shiny than ribbed currant)
 - spiny stem
 
@@ -44,6 +43,7 @@ Tamboti (*Spirostachys africana*)
 - poisonous bark (+ smoke)
 - nibbled on at base by porcupine
 - dark brown, cracked barked
+- seeds usually parasitised by Jumping Bean Moth larva
 
 White stemmed guarri (*Euclea crispa*)
 - whiteish silver stem
@@ -70,35 +70,49 @@ Swazi ordeal (*Erythrophleum lasianthum*)
 - large, round-crowned, drooping trees
 - dark green, glossy leaves
 - Sand Forest
-- Used for trials by ordeal TODO: check this
+- Used for trials by ordeal -- accused were forced to drink concoction of roots. Life or death verdict. 
 
 Black Monkey Orange (*Strychnos madagascariensis*)
-- TODO
+- unarmed 
+- fruit pulp is bright yellow
 
 Green Monkey Orange (*Strychnos spinosa*)
-- TODO
+- armed with paired spines
+- fruit pulp is brown
 
 Spider Flower Poision Rope (*Strophanthus gerrardii*)
 - alien, starfish like flower; demigorgon
 
-Sausage tree
+Sausage tree (*Kigelia africana*)
+- sausage-like fruit (~5 kg, ~60cm)
+- blood-red flowers bloom in Spring
 
-Sicamore Fig
+Sicamore Fig (*Ficus sycomorus*)
+- pale brownish bark
+- common along drainage lines
 
-False Tamboti
+False Tamboti (*Cleistanthus schlecteri*)
+- no milky latex that Tamboti has
+- denser, paler bark
+- not toxic
 
+Umbrella thorn (*Vachellia tortilis*)
+- paired thorns, with one longer than the other
 
+Sticky thorn (*Vachellia borleae*)
+- up to 5m tall
+- new leaves sticky
+- dark reddish brown bark; whitish, paired spines
 
 ---
 Sand num-num (*Carissa tetramera*) vs Num-num (*Carissa bispinossa*):
-- sand num-num has narrower, longer leaves than num-num
-- TODO
+- sand num-num has smaller, narrower, less glossy leaves than num-num
+- Num-num grows in coastal areas. Sand num num in sandy, inland areas
 ---
 Black vs Green Monkey Orange
-- TODO
-
+- green monkey orange has sharp, paired spines. Black monkey orange is unarmed
+- green monkey orange fruit has brown pulp. Black monkey orange has bright orange, slimy pulp.
+- both fruits' shells have the same colour (green --> yellow)
 ---
-False Tamboti vs Tamboti
-- TODO
 # Leaf Diagram
 ![[Leaf diagram.png]]

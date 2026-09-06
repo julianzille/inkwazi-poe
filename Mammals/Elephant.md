@@ -52,4 +52,4 @@ Drainage line walk #2 (*2 August*)
 - turned to us, lifted head, ears out, slowly approached us. We stood still. It moved off
 
 ---
-In 2020, translocation of two elephant bulls from Tembe Elephant Park (Mozam). Tembe's elephants carry a unique genetic predisposition for growing exceptionally large tusks. TODO: get name
+In 2020, translocation of two elephant bulls from Tembe Elephant Park (Mozam). Tembe's elephants carry a unique genetic predisposition for growing exceptionally large tusks. *iGwehla*

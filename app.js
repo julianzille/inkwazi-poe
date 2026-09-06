@@ -13,7 +13,7 @@
         {
             group: "Guiding & Safety",
             items: [
-                { id: "guided-walks", file: "Guided Walks.md", title: "Guided Walks Protocol", icon: "🧭", summary: "Briefing standards, walk grades, tracking & neutrality" },
+                { id: "guided-walks", file: "Guiding.md", title: "Guided Walks Protocol", icon: "🧭", summary: "Briefing standards, walk grades, tracking & neutrality" },
                 { id: "rifle-handling", file: "Rifle Handling.md", title: "Rifle Handling", icon: "🎯", summary: ".375 H&H manual of arms, ammo checks, rapid fire" },
                 { id: "dangerous-animals", file: "Dangerous Animal Behavior.md", title: "Dangerous Animal Behavior", icon: "⚠️", summary: "Awareness, confrontation & charge engagement matrix" }
             ]
@@ -51,8 +51,10 @@
                 { id: "mammal-giraffe", file: "Mammals/Giraffe.md", title: "Giraffe", icon: "🦒", summary: "Nuchal ligament biomechanics & jugular valves" },
                 { id: "mammal-hippo", file: "Mammals/Hippo.md", title: "Hippopotamus", icon: "🦛", summary: "Underwater nursing, territorial bulls & grazing" },
                 { id: "mammal-leopard", file: "Mammals/Leopard.md", title: "Leopard", icon: "🐆", summary: "Cub rearing cycles & scent marking logs" },
+                { id: "mammal-lion", file: "Mammals/Lion.md", title: "Lion", icon: "🦁", summary: "Prides, male coalitions & hunting strategy" },
                 { id: "mammal-zebra", file: "Mammals/Plains Zebra.md", title: "Plains Zebra", icon: "🦓", summary: "Harem abduction, bachelor groups & foal bonding" },
                 { id: "mammal-hyaena", file: "Mammals/Spotted Hyaena.md", title: "Spotted Hyaena", icon: "🐾", summary: "Clan biology, twin rivalry & lactation" },
+                { id: "mammal-white-rhino", file: "Mammals/White Rhino.md", title: "White Rhino", icon: "🦏", summary: "Social structure & reproduction" },
                 { id: "mammal-rhino", file: "Mammals/White vs Black Rhino.md", title: "White vs Black Rhino", icon: "🦏", summary: "Track morphology & lobe differentiation" }
             ]
         },
