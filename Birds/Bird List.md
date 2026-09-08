@@ -3,7 +3,7 @@
 <details open>
 <summary><b>Inkwazi Bird List (88 Species)</b></summary>
 
-<div style="column-count: 3; column-gap: 20px; margin-top: 10px;">
+<div style="column-width: 180px; column-gap: 16px; font-size: 0.9em; line-height: 1.35; margin-top: 10px;">
 
 - African Darter
 - African Goshawk
