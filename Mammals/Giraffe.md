@@ -1,28 +1,32 @@
 # Features
-- jugular valves in neck: mechanical valves that close when upside down (when giraffe drinks / grazes). Prevents blood rush to head
-- have same number of vertebrae (7) in neck as humans (and other mammals)
-- while ruminating, can see cud balls slide up and down neck if you look closely
-- when bending over to graze/drink, they throw their head down to use momentum against their **nuchal ligament**.
-	- A thick, elastic neck tendon acts like a rubber band pulling the neck up.
-	- This tendon strongly resists stretching when the giraffe tries to bend down.
-	- Throwing the head down generates momentum to force the stiff tendon to stretch.
-	- The stretched tendon then acts like a loaded spring to pull the head back up quickly if predators attack
-- modified axis-atlas joint to allow head to bend vertically to reach higher browse
-- thick saliva coats any swallowed thorns, which prevent internal cuts. Saliva also has antiseptic properties
+- Same number of cervical vertebrae (7) in neck as humans and most mammals
+- Cardiovascular biomechanics:
+	- Jugular venous valves close when head is lowered (drinking / grazing) to prevent blood rush and cerebral hemorrhage
+	- High blood pressure driven by oversized heart (~11kg)
+- Musculoskeletal adaptations:
+	- **Nuchal ligament**: Thick, elastic tendon acting like a rubber band pulling neck upwards; throwing head down generates momentum to stretch the tendon, which snaps neck back upright instantly if predators attack
+	- Modified axis-atlas joint allows vertical head articulation to reach topmost browse
+- Antiseptic, thick saliva coats ingested thorns and protects digestive tract
+
+# Behaviour
+- Rest lying down for brief intervals at night while ruminating; cud balls can be seen sliding up and down neck
+- "Necking": Sparring behavior between subadult bulls to establish dominance hierarchy (mature bulls rarely engage in severe fights)
+- Locomotion:
+	- Pacing gait: moves both left legs together, then both right legs together (prevents long legs from tangling)
+	- Neck rhythmically oscillates in synchrony with strides to balance center of gravity
 
 # Social Structure
-- highly gregarious -- nonterritorial, loose, open herds
-- little coordination in movements
-- males 
+- Highly gregarious, fission-fusion social system with open, loose herds lacking rigid territorial boundaries
 
-# Behavior
-- lie down for part of the night -- ruminate
-- males "neck" for position in dominance hierarchy, although mature bulls avoid conflict and know their position
-- 
+# Food & Diet
+- High-level selective browser (Acacia/Vachellia foliage, shoots, pods)
+- Drink every 2-3 days; extract substantial moisture directly from leaves
 
-# Locomotion
-- entire weight supported on left, then right, then left legs (otherwise long legs would interfere with each other)
-- neck moves in synchrony with legs, helps maintain balance
+# Reproduction & Offspring
+- Gestation ~15 months; single calf born standing up, dropping ~2m to the ground
+- Calves grouped into nursery herds (crèches) guarded by a sentinel female
 
-# Food
-- drink every 2-3 days. Extract water from leaves. 
+# Ecology
+- Prunes canopy trees, creating distinctive "browse lines" across savanna and woodland ecosystems
+
+# Field Sightings

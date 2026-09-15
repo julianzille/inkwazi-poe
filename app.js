@@ -795,6 +795,644 @@
     });
 
     // =========================================================================
+    // Toast Notification System
+    // =========================================================================
+    const toastContainer = document.getElementById('toast-container');
+    function showToast(message, type = 'info', duration = 3500) {
+        if (!toastContainer) return;
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        
+        let icon = 'ℹ️';
+        if (type === 'success') icon = '✅';
+        if (type === 'error') icon = '⚠️';
+        if (type === 'warning') icon = '⏳';
+
+        toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+        toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(12px) scale(0.9)';
+            toast.style.transition = 'all 0.25s ease';
+            setTimeout(() => toast.remove(), 260);
+        }, duration);
+    }
+
+    // =========================================================================
+    // Field Capture & Settings UI Controller
+    // =========================================================================
+    function setupFieldCapture() {
+        if (!window.FieldCapture) return;
+
+        const { SCHEMA, MarkdownInjector, client: ghClient, outbox } = window.FieldCapture;
+
+        // Trigger Elements
+        const mobileFab = document.getElementById('mobile-fab');
+        const fabBadge = document.getElementById('fab-badge');
+        const topbarCaptureBtn = document.getElementById('topbar-capture-btn');
+        const topbarSettingsBtn = document.getElementById('topbar-settings-btn');
+        const sidebarSettingsBtn = document.getElementById('sidebar-settings-btn');
+        const outboxSyncBtn = document.getElementById('outbox-sync-btn');
+        const outboxBadgeCount = document.getElementById('outbox-badge-count');
+
+        // Capture Modal Elements
+        const captureModal = document.getElementById('capture-modal-container');
+        const captureBackdrop = document.getElementById('capture-modal-backdrop');
+        const captureCloseBtn = document.getElementById('capture-close-btn');
+        const categoryPills = document.getElementById('capture-category-pills');
+        const targetSelect = document.getElementById('capture-target-select');
+        const headingGroup = document.getElementById('capture-heading-group');
+        const headingSelect = document.getElementById('capture-heading-select');
+        const treeSpeciesGroup = document.getElementById('capture-tree-species-group');
+        const treeSearchInput = document.getElementById('capture-tree-search');
+        const treeDatalist = document.getElementById('tree-species-datalist');
+        const birdInputGroup = document.getElementById('capture-bird-input-group');
+        const birdInput = document.getElementById('capture-bird-input');
+        const birdLabel = document.getElementById('capture-bird-label');
+        const mnemonicGroup = document.getElementById('capture-mnemonic-group');
+        const mnemonicInput = document.getElementById('capture-mnemonic-input');
+        const sightingBox = document.getElementById('capture-sighting-box');
+        const sightingDate = document.getElementById('capture-sighting-date');
+        const sightingLocation = document.getElementById('capture-sighting-location');
+        const noteLabel = document.getElementById('capture-note-label');
+        const noteText = document.getElementById('capture-note-text');
+        const previewToggle = document.getElementById('capture-preview-toggle');
+        const previewArrow = document.getElementById('preview-arrow-icon');
+        const previewCard = document.getElementById('capture-preview-card');
+        const previewPath = document.getElementById('capture-preview-path');
+        const previewContent = document.getElementById('capture-preview-content');
+        const statusMsg = document.getElementById('capture-status-msg');
+        const submitBtn = document.getElementById('capture-submit-btn');
+        const submitText = document.getElementById('capture-submit-text');
+        const submitSpinner = document.getElementById('capture-spinner');
+        const outboxBtn = document.getElementById('capture-outbox-btn');
+
+        // Settings Modal Elements
+        const settingsModal = document.getElementById('settings-modal-container');
+        const settingsBackdrop = document.getElementById('settings-modal-backdrop');
+        const settingsCloseBtn = document.getElementById('settings-close-btn');
+        const ghTokenInput = document.getElementById('gh-token-input');
+        const toggleTokenVisibility = document.getElementById('toggle-token-visibility');
+        const ghRepoInput = document.getElementById('gh-repo-input');
+        const ghBranchInput = document.getElementById('gh-branch-input');
+        const modeDirectRadio = document.getElementById('mode-direct');
+        const modePrRadio = document.getElementById('mode-pr');
+        const testConnectionBtn = document.getElementById('test-connection-btn');
+        const connectionStatusPill = document.getElementById('connection-status-pill');
+        const saveSettingsBtn = document.getElementById('save-settings-btn');
+        const clearTokenBtn = document.getElementById('clear-token-btn');
+        const settingsOutboxCount = document.getElementById('settings-outbox-count');
+        const settingsSyncOutboxBtn = document.getElementById('settings-sync-outbox-btn');
+        const settingsOutboxList = document.getElementById('settings-outbox-list');
+
+        let currentCategoryKey = 'mammals';
+        let currentTargetObj = null;
+
+        // Tree species master list for datalist
+        const knownTrees = [
+            "Lebombo wattle", "Buffalo thorn", "Lavender feverberry", "Balloon thorn",
+            "Scented-pod thorn", "Num-num", "Magic guarri", "Ribbed currant",
+            "Thorny karee", "Tamboti", "White stemmed guarri", "Sneezewood",
+            "Pepper bark", "Elephant's Pudding", "Torchwood / Green-thorn", "Swazi ordeal",
+            "Black Monkey Orange", "Green Monkey Orange", "Spider Flower Poison Rope",
+            "Sausage tree", "Sicamore Fig", "False Tamboti", "Umbrella thorn",
+            "Sticky thorn", "Sand num-num", "Bushveld Saffron", "Weeping Boer-Bean", "Natal mahogany"
+        ];
+        if (treeDatalist) {
+            treeDatalist.innerHTML = knownTrees.map(t => `<option value="${t}">`).join('');
+        }
+
+        // 1. Category and Target Selectors
+        function renderCategoryPills() {
+            categoryPills.innerHTML = '';
+            Object.keys(SCHEMA).forEach(catKey => {
+                const cat = SCHEMA[catKey];
+                const pill = document.createElement('button');
+                pill.type = 'button';
+                pill.className = `category-pill ${catKey === currentCategoryKey ? 'active' : ''}`;
+                pill.dataset.category = catKey;
+                pill.innerHTML = `<span>${cat.icon}</span> <span>${cat.title}</span>`;
+                pill.addEventListener('click', () => selectCategory(catKey));
+                categoryPills.appendChild(pill);
+            });
+        }
+
+        function selectCategory(catKey, preselectedTargetId) {
+            currentCategoryKey = catKey;
+            categoryPills.querySelectorAll('.category-pill').forEach(p => {
+                p.classList.toggle('active', p.dataset.category === catKey);
+            });
+
+            const cat = SCHEMA[catKey];
+            targetSelect.innerHTML = '';
+
+            cat.targets.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t.id;
+                opt.textContent = `${t.icon || '📄'} ${t.name}`;
+                targetSelect.appendChild(opt);
+            });
+
+            if (preselectedTargetId) {
+                targetSelect.value = preselectedTargetId;
+            }
+
+            selectTarget(targetSelect.value);
+        }
+
+        function selectTarget(targetId) {
+            const cat = SCHEMA[currentCategoryKey];
+            currentTargetObj = cat.targets.find(t => t.id === targetId) || cat.targets[0];
+            if (!currentTargetObj) return;
+
+            // Reset visibility
+            headingGroup.classList.remove('hidden');
+            treeSpeciesGroup.classList.add('hidden');
+            birdInputGroup.classList.add('hidden');
+            mnemonicGroup.classList.add('hidden');
+            sightingBox.classList.add('hidden');
+            noteLabel.textContent = "Field Observation Note";
+            noteText.placeholder = "Enter findings, observations, or biological details...";
+
+            const targetType = currentTargetObj.type || 'heading_based';
+
+            if (targetType === 'species_bullet') {
+                headingGroup.classList.add('hidden');
+                treeSpeciesGroup.classList.remove('hidden');
+                noteLabel.textContent = "Species Field Note";
+                noteText.placeholder = "e.g. Abundant canopy tree in Sand Forest; wine-red pods...";
+            } else if (targetType === 'bird_checklist') {
+                headingGroup.classList.add('hidden');
+                birdInputGroup.classList.remove('hidden');
+                birdLabel.textContent = "Bird Species Name";
+                birdInput.placeholder = "e.g. Narina Trogon";
+                noteLabel.textContent = "Additional Notes (Optional)";
+                noteText.placeholder = "Optional sighting or habitat notes...";
+            } else if (targetType === 'donkeybridge') {
+                headingGroup.classList.add('hidden');
+                birdInputGroup.classList.remove('hidden');
+                birdLabel.textContent = "Bird Species";
+                birdInput.placeholder = "e.g. Emerald-spotted Wood Dove";
+                mnemonicGroup.classList.remove('hidden');
+                noteLabel.textContent = "Additional Notes (Optional)";
+            } else {
+                // Heading based
+                headingSelect.innerHTML = '';
+                const headings = currentTargetObj.headings || cat.defaultHeadings || [];
+                headings.forEach(h => {
+                    const opt = document.createElement('option');
+                    opt.value = h;
+                    opt.textContent = h;
+                    headingSelect.appendChild(opt);
+                });
+                onHeadingChange();
+            }
+
+            updatePreview();
+        }
+
+        function onHeadingChange() {
+            const heading = headingSelect.value;
+            const isSighting = /sighting|encounter|survey/i.test(heading);
+            sightingBox.classList.toggle('hidden', !isSighting);
+
+            if (isSighting && !sightingDate.value) {
+                // Auto-fill today's date
+                const today = new Date();
+                sightingDate.value = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+            }
+
+            updatePreview();
+        }
+
+        targetSelect.addEventListener('change', () => selectTarget(targetSelect.value));
+        headingSelect.addEventListener('change', onHeadingChange);
+        treeSearchInput.addEventListener('input', updatePreview);
+        birdInput.addEventListener('input', updatePreview);
+        mnemonicInput.addEventListener('input', updatePreview);
+        sightingDate.addEventListener('input', updatePreview);
+        sightingLocation.addEventListener('input', updatePreview);
+        noteText.addEventListener('input', updatePreview);
+
+        // 2. Format Toolbar
+        document.querySelectorAll('.fmt-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const fmt = btn.dataset.fmt;
+                const start = noteText.selectionStart;
+                const end = noteText.selectionEnd;
+                const val = noteText.value;
+                const sel = val.substring(start, end);
+
+                let inserted = '';
+                if (fmt === 'bullet') {
+                    inserted = sel ? `- ${sel}` : '- ';
+                } else if (fmt === 'bold') {
+                    inserted = `**${sel || 'text'}**`;
+                } else if (fmt === 'italic') {
+                    inserted = `*${sel || 'text'}*`;
+                } else if (fmt === 'subbullet') {
+                    inserted = sel ? `\t- ${sel}` : '\t- ';
+                }
+
+                noteText.value = val.substring(0, start) + inserted + val.substring(end);
+                noteText.focus();
+                noteText.selectionStart = noteText.selectionEnd = start + inserted.length;
+                updatePreview();
+            });
+        });
+
+        // 3. Live Markdown Preview
+        previewToggle.addEventListener('click', () => {
+            const isOpen = previewCard.classList.toggle('hidden');
+            previewArrow.classList.toggle('open', !isOpen);
+        });
+
+        function buildPayload() {
+            if (!currentTargetObj) return null;
+            const targetType = currentTargetObj.type || 'heading_based';
+            const file = currentTargetObj.file;
+            const noteRaw = noteText.value.trim();
+
+            if (targetType === 'species_bullet') {
+                const species = treeSearchInput.value.trim();
+                const bullet = noteRaw.startsWith('-') ? noteRaw : `- ${noteRaw}`;
+                return {
+                    type: 'species_bullet',
+                    targetFile: file,
+                    speciesName: species,
+                    formattedNote: bullet,
+                    commitMsg: `field-note(trees): add note for ${species}`
+                };
+            } else if (targetType === 'bird_checklist') {
+                const species = birdInput.value.trim();
+                return {
+                    type: 'bird_checklist',
+                    targetFile: file,
+                    birdSpecies: species,
+                    formattedNote: `- ${species}`,
+                    commitMsg: `field-note(birds): record ${species}`
+                };
+            } else if (targetType === 'donkeybridge') {
+                const species = birdInput.value.trim();
+                const mnemonic = mnemonicInput.value.trim();
+                return {
+                    type: 'donkeybridge',
+                    targetFile: file,
+                    birdSpecies: species,
+                    mnemonic: mnemonic,
+                    formattedNote: `- ${species}: *${mnemonic}*`,
+                    commitMsg: `field-note(birds): add call mnemonic for ${species}`
+                };
+            } else {
+                const heading = headingSelect.value;
+                const isSighting = /sighting|encounter|survey/i.test(heading);
+                let formattedNote = '';
+
+                if (isSighting) {
+                    const date = sightingDate.value.trim() || 'Undated';
+                    const loc = sightingLocation.value.trim();
+                    const locPart = loc ? ` (${loc})` : '';
+                    const body = noteRaw ? `: ${noteRaw}` : '';
+                    formattedNote = `- **${date}**${locPart}${body}`;
+                } else {
+                    if (noteRaw.startsWith('-') || noteRaw.startsWith('*')) {
+                        formattedNote = noteRaw;
+                    } else {
+                        formattedNote = `- ${noteRaw}`;
+                    }
+                }
+
+                return {
+                    type: 'heading_based',
+                    targetFile: file,
+                    heading: heading,
+                    formattedNote: formattedNote,
+                    commitMsg: `field-note: update ${currentTargetObj.name} (${heading})`
+                };
+            }
+        }
+
+        function updatePreview() {
+            const payload = buildPayload();
+            if (!payload) return;
+
+            if (payload.type === 'species_bullet') {
+                previewPath.innerHTML = `Target: <code>${payload.targetFile}</code> &rarr; Species: <b>${payload.speciesName || '(select species)'}</b>`;
+            } else if (payload.type === 'bird_checklist' || payload.type === 'donkeybridge') {
+                previewPath.innerHTML = `Target: <code>${payload.targetFile}</code>`;
+            } else {
+                previewPath.innerHTML = `Target: <code>${payload.targetFile}</code> &rarr; <code># ${payload.heading}</code>`;
+            }
+
+            const markdownToRender = payload.formattedNote || '*No note entered yet...*';
+            try {
+                previewContent.innerHTML = DOMPurify.sanitize(marked.parse(markdownToRender));
+            } catch (e) {
+                previewContent.textContent = markdownToRender;
+            }
+        }
+
+        // 4. Modal Open & Contextual Auto-Selection
+        function openCaptureModal() {
+            statusMsg.classList.add('hidden');
+            renderCategoryPills();
+
+            // Check current active page to intelligently pre-select target
+            const hash = window.location.hash.replace(/^#/, '');
+            let preCat = 'mammals';
+            let preTargetId = null;
+
+            if (hash.startsWith('mammal-')) {
+                preCat = 'mammals';
+                preTargetId = hash === 'mammal-rhino' ? 'mammal-rhino-compare' : hash;
+            } else if (hash.startsWith('flora-trees')) {
+                preCat = 'trees';
+                preTargetId = hash === 'flora-trees-list' ? 'trees-species-list' : 'trees-general';
+            } else if (hash.startsWith('bird-')) {
+                preCat = 'birds';
+                if (hash === 'bird-list') preTargetId = 'birds-checklist';
+                else if (hash === 'bird-donkeybridges') preTargetId = 'birds-donkeybridges';
+                else preTargetId = 'birds-general';
+            } else if (hash === 'eco-reptiles') {
+                preCat = 'herps_bugs';
+                preTargetId = 'reptiles';
+            } else if (hash === 'eco-amphibians') {
+                preCat = 'herps_bugs';
+                preTargetId = 'amphibians';
+            } else if (hash === 'eco-arthropods') {
+                preCat = 'herps_bugs';
+                preTargetId = 'arthropods';
+            }
+
+            selectCategory(preCat, preTargetId);
+            captureModal.classList.add('active');
+            captureModal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeCaptureModal() {
+            captureModal.classList.remove('active');
+            captureModal.setAttribute('aria-hidden', 'true');
+        }
+
+        mobileFab.addEventListener('click', openCaptureModal);
+        topbarCaptureBtn.addEventListener('click', openCaptureModal);
+        captureCloseBtn.addEventListener('click', closeCaptureModal);
+        captureBackdrop.addEventListener('click', closeCaptureModal);
+
+        // 5. Submit Note Action
+        submitBtn.addEventListener('click', async () => {
+            const payload = buildPayload();
+            if (!payload) return;
+
+            // Basic validation
+            if (payload.type === 'species_bullet' && !payload.speciesName) {
+                alert("Please select or enter a Tree species name.");
+                treeSearchInput.focus();
+                return;
+            }
+            if ((payload.type === 'bird_checklist' || payload.type === 'donkeybridge') && !payload.birdSpecies) {
+                alert("Please enter a Bird species name.");
+                birdInput.focus();
+                return;
+            }
+            if (payload.type === 'heading_based' && !noteText.value.trim() && !/sighting/i.test(payload.heading)) {
+                alert("Please enter a note before committing.");
+                noteText.focus();
+                return;
+            }
+
+            // Check GitHub token
+            if (!ghClient.hasToken()) {
+                openSettingsModal();
+                showToast("Please enter your GitHub Personal Access Token first.", "warning", 5000);
+                return;
+            }
+
+            // UI loading state
+            submitBtn.disabled = true;
+            submitSpinner.classList.remove('hidden');
+            submitText.textContent = "Committing to GitHub...";
+            statusMsg.classList.add('hidden');
+
+            try {
+                // Fetch file from GitHub
+                const { content, sha } = await ghClient.getFile(payload.targetFile);
+                let updatedContent = '';
+
+                if (payload.type === 'species_bullet') {
+                    updatedContent = MarkdownInjector.injectTreeSpeciesBullet(content, payload.speciesName, payload.formattedNote);
+                } else if (payload.type === 'bird_checklist') {
+                    updatedContent = MarkdownInjector.injectBirdChecklistSpecies(content, payload.birdSpecies);
+                } else if (payload.type === 'donkeybridge') {
+                    updatedContent = MarkdownInjector.injectDonkeybridge(content, payload.birdSpecies, payload.mnemonic);
+                } else {
+                    updatedContent = MarkdownInjector.injectUnderHeading(content, payload.heading, payload.formattedNote);
+                }
+
+                if (ghClient.config.mode === 'pr') {
+                    const prResult = await ghClient.createPullRequest(payload.targetFile, updatedContent, payload.commitMsg, payload.commitMsg);
+                    showToast(`Pull Request created: #${prResult.number}`, "success", 4500);
+                } else {
+                    await ghClient.directCommit(payload.targetFile, updatedContent, sha, payload.commitMsg);
+                    showToast("Note committed directly to GitHub!", "success", 4000);
+                }
+
+                // Reset form
+                noteText.value = '';
+                sightingLocation.value = '';
+                closeCaptureModal();
+
+                // Reload current view if currently viewing target file
+                const currentItem = itemById.get(window.location.hash.replace(/^#/, ''));
+                if (currentItem && currentItem.file === payload.targetFile) {
+                    loadPage(currentItem.id);
+                }
+
+            } catch (err) {
+                console.error("Direct commit error:", err);
+                // Save to outbox on failure
+                outbox.enqueue(payload);
+                showToast(`Offline/Error: Saved to Outbox (${err.message})`, "warning", 5000);
+                closeCaptureModal();
+            } finally {
+                submitBtn.disabled = false;
+                submitSpinner.classList.add('hidden');
+                submitText.textContent = "🚀 Commit to Portfolio";
+            }
+        });
+
+        // 6. Force Save to Outbox Button
+        outboxBtn.addEventListener('click', () => {
+            const payload = buildPayload();
+            if (!payload) return;
+            outbox.enqueue(payload);
+            showToast("Note saved to offline Outbox queue.", "info", 3500);
+            noteText.value = '';
+            closeCaptureModal();
+        });
+
+        // 7. Settings Modal Controller
+        function openSettingsModal() {
+            ghTokenInput.value = ghClient.config.token || '';
+            ghRepoInput.value = ghClient.config.repo || 'julianzille/inkwazi-poe';
+            ghBranchInput.value = ghClient.config.branch || 'main';
+            if (ghClient.config.mode === 'pr') {
+                modePrRadio.checked = true;
+            } else {
+                modeDirectRadio.checked = true;
+            }
+            updateOutboxSettingsUI();
+            settingsModal.classList.add('active');
+            settingsModal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeSettingsModal() {
+            settingsModal.classList.remove('active');
+            settingsModal.setAttribute('aria-hidden', 'true');
+        }
+
+        topbarSettingsBtn.addEventListener('click', openSettingsModal);
+        sidebarSettingsBtn.addEventListener('click', openSettingsModal);
+        settingsCloseBtn.addEventListener('click', closeSettingsModal);
+        settingsBackdrop.addEventListener('click', closeSettingsModal);
+
+        toggleTokenVisibility.addEventListener('click', () => {
+            ghTokenInput.type = ghTokenInput.type === 'password' ? 'text' : 'password';
+        });
+
+        testConnectionBtn.addEventListener('click', async () => {
+            connectionStatusPill.className = 'connection-status-pill';
+            connectionStatusPill.textContent = 'Testing connection...';
+            try {
+                // Save current values first
+                ghClient.saveConfig({
+                    token: ghTokenInput.value.trim(),
+                    repo: ghRepoInput.value.trim().split('/')[1] || ghRepoInput.value.trim(),
+                    owner: ghRepoInput.value.trim().split('/')[0] || 'julianzille',
+                    branch: ghBranchInput.value.trim()
+                });
+
+                const info = await ghClient.testConnection();
+                connectionStatusPill.classList.add('status-connected');
+                connectionStatusPill.textContent = `Connected: ${info.fullName} (${info.canPush ? 'Push OK' : 'Read only'})`;
+                showToast("GitHub Connection verified!", "success");
+            } catch (err) {
+                connectionStatusPill.classList.add('status-failed');
+                connectionStatusPill.textContent = `Error: ${err.message}`;
+                showToast(err.message, "error", 5000);
+            }
+        });
+
+        saveSettingsBtn.addEventListener('click', () => {
+            const fullRepo = ghRepoInput.value.trim();
+            const parts = fullRepo.split('/');
+            const owner = parts.length > 1 ? parts[0] : 'julianzille';
+            const repo = parts.length > 1 ? parts[1] : fullRepo;
+
+            ghClient.saveConfig({
+                token: ghTokenInput.value.trim(),
+                owner: owner,
+                repo: repo,
+                branch: ghBranchInput.value.trim() || 'main',
+                mode: modePrRadio.checked ? 'pr' : 'direct'
+            });
+
+            showToast("Settings saved successfully.", "success");
+            closeSettingsModal();
+        });
+
+        clearTokenBtn.addEventListener('click', () => {
+            if (confirm("Clear saved GitHub token from this device?")) {
+                ghClient.saveConfig({ token: '' });
+                ghTokenInput.value = '';
+                connectionStatusPill.className = 'connection-status-pill';
+                connectionStatusPill.textContent = 'Status: Token Cleared';
+                showToast("Token cleared.", "info");
+            }
+        });
+
+        // 8. Outbox UI & Sync Handling
+        function updateOutboxBadge(count) {
+            if (count > 0) {
+                fabBadge.classList.remove('hidden');
+                fabBadge.textContent = count;
+                outboxSyncBtn.classList.remove('hidden');
+                outboxBadgeCount.textContent = count;
+            } else {
+                fabBadge.classList.add('hidden');
+                outboxSyncBtn.classList.add('hidden');
+            }
+            if (settingsOutboxCount) settingsOutboxCount.textContent = count;
+        }
+
+        function updateOutboxSettingsUI() {
+            const queue = outbox.getQueue();
+            updateOutboxBadge(queue.length);
+            if (!settingsOutboxList) return;
+
+            if (queue.length === 0) {
+                settingsOutboxList.innerHTML = '<p class="empty-outbox-msg">No pending notes in offline queue.</p>';
+                return;
+            }
+
+            settingsOutboxList.innerHTML = queue.map(item => `
+                <div class="outbox-item">
+                    <div>
+                        <b>${item.targetFile}</b> ${item.heading ? `(${item.heading})` : ''}
+                        <br><span style="color: var(--text-muted); font-size: 0.75rem;">${new Date(item.createdAt).toLocaleString()}</span>
+                    </div>
+                    <button class="btn btn-sm btn-danger remove-outbox-item-btn" data-id="${item.id}">Remove</button>
+                </div>
+            `).join('');
+
+            settingsOutboxList.querySelectorAll('.remove-outbox-item-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    outbox.remove(btn.dataset.id);
+                    updateOutboxSettingsUI();
+                    showToast("Item removed from Outbox.", "info");
+                });
+            });
+        }
+
+        window.addEventListener('inkwazi-outbox-changed', (e) => {
+            updateOutboxBadge(e.detail.count);
+        });
+
+        async function triggerOutboxSync() {
+            if (!ghClient.hasToken()) {
+                openSettingsModal();
+                showToast("Please enter your GitHub Token to sync Outbox notes.", "warning");
+                return;
+            }
+            showToast("Syncing offline notes to GitHub...", "warning", 2500);
+            const res = await outbox.syncAll();
+            if (res.successCount > 0) {
+                showToast(`Synced ${res.successCount} note(s) to GitHub!`, "success", 4000);
+                const currentItem = itemById.get(window.location.hash.replace(/^#/, ''));
+                if (currentItem) loadPage(currentItem.id);
+            }
+            if (res.failedCount > 0) {
+                showToast(`${res.failedCount} note(s) failed to sync. Check network/token.`, "error", 5000);
+            }
+            updateOutboxSettingsUI();
+        }
+
+        outboxSyncBtn.addEventListener('click', triggerOutboxSync);
+        settingsSyncOutboxBtn.addEventListener('click', triggerOutboxSync);
+
+        // Auto-sync when internet reconnection detected
+        window.addEventListener('online', () => {
+            if (outbox.getPendingCount() > 0 && ghClient.hasToken()) {
+                triggerOutboxSync();
+            }
+        });
+
+        // Initialize badges
+        updateOutboxBadge(outbox.getPendingCount());
+    }
+
+    // =========================================================================
     // Hash Routing Lifecycle
     // =========================================================================
     function handleRoute() {
@@ -806,6 +1444,8 @@
 
     // Initial boot
     renderNavigation();
+    setupFieldCapture();
     handleRoute();
 
 })();
+

@@ -1,22 +1,29 @@
-# Social Structure
-- female-dominated clans
-- unlike most carnivores:
-	- clan members compete more and cooperate less
-	- females larger than males and dominate them
-	- females compete for rank and food; no cross-suckling
-	- cubs raised in communal dens, but seldom provisioned for or guarded by clan members
-- female offspring remain in natal clan; males disperse at ~2yrs
-# Reproduction
-- females giving birth for first time suffer 9% mortality; 60% of young are stillborn
-- female genitals slightly masculinised (high testerone levels) -- birth canal bent at right angles and is much longer than umbilical cord so young are cut off from oxygen
-- nearly always give birth to twins
-- with incisor teeth fully erupted, immediate fight for dominance
-- if twins are both female, fight is invariably fatal for one
-- young suckle for 15-18 months (until they can follow on hunting trips)
-	- 6 times per day, then 3 times per day at 3 months
-- reliance on milk: mother can hunt / forage for up to two days -- impractical to bring meat back
-- ready to eat meat (when available) by 2 months
+# Features
+- Powerful forequarters with sloping back; bone-cracking sagittal crest and massive jaw musculature
+- High stomach acidity (pH ~1) capable of digesting bones, horns, and hooves within 24 hours
 
-# Food
-- eat everything but rumen contents
-- bones, horns, hooves digested completely within 24hrs
+# Behaviour
+- Highly vocal: iconic "whoop" for long-distance rallying, "giggle" during submission/feeding excitement
+- Nocturnal hunters and opportunistic scavengers
+
+# Social Structure
+- Female-dominated matriarchal clans (up to 80 individuals)
+- Females are larger and socially dominant over all males
+- Intense intra-clan competition: females compete for rank and access to kills; no cross-suckling
+- Cubs raised in communal dens, but mothers only provision and defend their own offspring
+- Matrilineal inheritance of rank: daughters inherit mother's social status; males disperse at ~2 years
+
+# Food & Diet
+- Highly successful cursorial pack hunters (up to 75% of prey killed by hyaenas themselves)
+- Consume virtually entire carcass except dry rumen contents; white calcium-rich droppings
+
+# Reproduction & Offspring
+- Pseudo-penis morphology: female external genitalia masculinized (high androstenedione levels); birth canal bends at right angles and is longer than umbilical cord (high natal/maternal mortality)
+- Litters almost always twins, born with fully erupted teeth; immediate facultative siblicide (often fatal if both cubs are female)
+- Extended lactation: suckle for 15-18 months with protein- and fat-rich milk (mothers forage for days without regurgitating meat)
+- Cubs begin tasting solid meat at 2 months
+
+# Ecology
+- Critical apex predator and scavenger; recycles mineral nutrients (calcium/phosphorus) and maintains savanna hygiene
+
+# Field Sightings

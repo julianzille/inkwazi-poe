@@ -1,30 +1,34 @@
-
 # Features
-- non-retractile claws -- generate speed
-- smaller canines than other cats. Will suffocate prey. 
-- tearmarking theories: most believe they serve as natural sunglasses, allowing them to see better in the day (when they hunt). Other believe it exagerrates facial expressions for communication / aggressive faces.
-# Behavior
-- tend to avoid conflict with other animals (including other cheetah): can't afford injury, and they are relatively smaller
-# Food
-- diurnal hunters (only cats)
-- misconception that they hunt in open areas; they actually prefer thicket, where they can accelerate and turn sharply (advantage over prey)
-- on kill, won't eat stomach which, when ruptured, smells and attracts predators
-- much 
-# Social structure
-- males singular or in bachelor groups (usually brothers); females solitary or with cubs
-- at ~1.5 years
-	- all siblings abandoned by mother, sticky together for several months
-	- (when first coming into heat) female separates from littermates and avoid contact with both sexes, except to mate.
-	- male littermates separate and form coalitions 
-# Sightings
-Week 1, floodplain
-- first driving day, midday
-- floodplains
-- solo individual (gender unconfirmed)
+- Non-retractile claws acting as running cleats to generate speed and grip
+- Smaller canines than other big cats; suffocates prey with throat bite
+- Tear-markings:
+	- Act as natural anti-glare sunglasses, aiding vision during bright daytime hunts
+	- Also exaggerate facial expressions during communication and threat displays
 
-Week 1, baseline gamedrive
-- mother and four cubs
-- staring at wildebeest
+# Behaviour
+- Diurnal hunters (only African cats primarily active during midday)
+- Conflict avoidance: avoids confrontation with other carnivores due to lightweight build and high risk of fatal injury
 
-Week 4 (gamedrive)
-- mother and cubs on Nyala kill
+# Social Structure
+- Males: solitary or form tight coalitions of brothers (holding territories)
+- Females: solitary, occupying large overlapping home ranges
+- Dispersal at ~1.5 years:
+	- Mother departs; siblings stay together for several months
+	- Upon first estrus, female separates and leads solitary life
+	- Male littermates remain together in permanent coalition
+
+# Food & Diet
+- Prefer hunting in semi-open thicket edges rather than vast open plains, utilizing acceleration and sharp maneuverability
+- On kills, cheetahs do not rupture or consume the stomach contents to avoid strong scents that attract lions and hyaenas
+
+# Reproduction & Offspring
+- Gestation ~3 months; litter size 2-6 cubs
+- Cubs born with smoky-grey mantles on back mimicking honey badgers (aposematic mimicry to deter predators)
+
+# Ecology
+- High speed cursorial predator specializing on small-to-medium ungulates (impala, springbok, young wildebeest)
+
+# Field Sightings
+- **Week 1** (Midday, Floodplain): Solo individual (gender unconfirmed).
+- **Week 1** (Baseline Game Drive): Mother and four cubs staring at wildebeest.
+- **Week 4** (Game Drive): Mother and cubs feeding on Nyala kill.

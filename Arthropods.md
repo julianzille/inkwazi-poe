@@ -1,19 +1,18 @@
-Phinda button spider: 
-- discovered here
-- large, carnivorous spider
+# Key Species Notes
 
-Crimson (or scarlet) winged butterfly
-- white wings with reddish tips
-### Arthropods Day (14 Aug)
+### Phinda Button Spider (*Latrodectus umbaticus*)
+- Discovered and described at Phinda Game Reserve
+- Large, highly venomous neurotoxic button/widow spider
 
-Species found:
-- Common barklice (family Psocidae)
-- Barrel cockroach (family Bantua)
-- Wolfspider
-	- beige / brownish, banded legs, two stripes down abdomen
-	- mygalomorph
-- Millipede assasin (eats millipedes)
-- Polka dot butterfly
-- Jumping bean moth
-	- larvae live inside seed pods
- 
+### Crimson-winged Butterfly (*Colotis* sp.)
+- Distinctive chalky-white wings with bright reddish/crimson apical wingtips
+
+# Field Surveys & Sightings
+
+### Arthropods Survey (14 August)
+- **Common barklice** (Family Psocidae)
+- **Barrel cockroach** (Family Bantua)
+- **Wolf spider** (Family Lycosidae): Beige/brownish, banded legs, two dark longitudinal stripes down cephalothorax
+- **Millipede assassin bug** (Family Reduviidae): Specialized predator on millipedes
+- **Polka dot butterfly**
+- **Jumping bean moth** (*Emperor moth / Tortricidae*): Larvae develop inside *Spirostachys africana* (Tamboti) seed capsules
