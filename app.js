@@ -230,7 +230,32 @@
     // Markdown Preprocessing & Enhancements
     // =========================================================================
     function renderPdfViewer(src, title) {
-        return `<div class="pdf-viewer-container"><div class="pdf-toolbar"><span class="pdf-toolbar-title">📄 ${title}</span><div class="pdf-toolbar-actions"><a href="${src}" target="_blank" rel="noopener noreferrer" class="action-btn pdf-action-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span>Open in New Tab</span></a><a href="${src}" download class="action-btn pdf-action-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg><span>Download PDF</span></a></div></div><iframe src="${src}#view=FitH" class="pdf-embed-frame" title="${title}" loading="lazy"></iframe></div>`;
+        return `<div class="pdf-viewer-container">
+            <div class="pdf-toolbar">
+                <span class="pdf-toolbar-title">📄 ${title}</span>
+                <div class="pdf-toolbar-actions">
+                    <button type="button" class="action-btn pdf-action-btn pdf-load-btn" onclick="const wrap=this.closest('.pdf-viewer-container').querySelector('.pdf-embed-wrapper'); wrap.innerHTML='<iframe src=\\'${src}#view=FitH\\' class=\\'pdf-embed-frame\\' title=\\'${title}\\'></iframe>'; this.style.display='none';">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        <span>Preview PDF</span>
+                    </button>
+                    <a href="${src}" target="_blank" rel="noopener noreferrer" class="action-btn pdf-action-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        <span>Open</span>
+                    </a>
+                    <a href="${src}" download class="action-btn pdf-action-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        <span>Download</span>
+                    </a>
+                </div>
+            </div>
+            <div class="pdf-embed-wrapper">
+                <div class="pdf-placeholder" onclick="this.closest('.pdf-viewer-container').querySelector('.pdf-load-btn').click();">
+                    <div class="pdf-placeholder-icon">📄</div>
+                    <p class="pdf-placeholder-text">Click to load interactive PDF preview (${title})</p>
+                    <p class="pdf-placeholder-sub">Saves mobile data until requested</p>
+                </div>
+            </div>
+        </div>`;
     }
 
     function preprocessMarkdown(raw) {
@@ -239,29 +264,34 @@
         // 1. Convert Obsidian embeds: ![[Image.png|width]] or ![[Document.pdf]]
         text = text.replace(/!\[\[([^\]|]+)(?:\|(\d+))?\]\]/g, (match, filename, width) => {
             const cleanFilename = filename.trim();
-            const safeSrc = encodeURI(cleanFilename);
             const isPdf = /\.pdf$/i.test(cleanFilename);
 
             if (isPdf) {
-                return renderPdfViewer(safeSrc, cleanFilename);
+                return renderPdfViewer(encodeURI(cleanFilename), cleanFilename);
             }
 
+            const webpFilename = cleanFilename.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+            const safeSrc = encodeURI(webpFilename);
+            const fallbackSrc = encodeURI(cleanFilename);
             const styleAttr = width ? `style="max-width: min(${width}px, 100%);"` : '';
-            return `<div class="image-container"><img src="${safeSrc}" alt="${cleanFilename}" ${styleAttr} loading="lazy" class="zoomable-image"><div class="image-caption">${cleanFilename.replace(/\.png$/i, '')}</div></div>`;
+            return `<div class="image-container"><img src="${safeSrc}" alt="${cleanFilename}" ${styleAttr} loading="lazy" class="zoomable-image" onerror="if(this.src.endsWith('.webp')){this.src='${fallbackSrc}';}"><div class="image-caption">${cleanFilename.replace(/\.(png|jpg|jpeg|webp)$/i, '')}</div></div>`;
         });
 
         // 2. Convert standard markdown images or pdf embeds
         text = text.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, src) => {
             const cleanSrc = src.trim();
-            const safeSrc = encodeURI(cleanSrc);
             const isPdf = /\.pdf$/i.test(cleanSrc);
 
             if (isPdf) {
                 const title = alt || cleanSrc;
-                return renderPdfViewer(safeSrc, title);
+                return renderPdfViewer(encodeURI(cleanSrc), title);
             }
 
-            return `<div class="image-container"><img src="${safeSrc}" alt="${alt}" loading="lazy" class="zoomable-image"><div class="image-caption">${alt}</div></div>`;
+            const webpSrc = cleanSrc.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+            const safeSrc = encodeURI(webpSrc);
+            const fallbackSrc = encodeURI(cleanSrc);
+
+            return `<div class="image-container"><img src="${safeSrc}" alt="${alt}" loading="lazy" class="zoomable-image" onerror="if(this.src.endsWith('.webp')){this.src='${fallbackSrc}';}"><div class="image-caption">${alt}</div></div>`;
         });
 
         // 3. Convert Obsidian wiki-links: [[Target Page]]
@@ -571,7 +601,7 @@
         }
 
         try {
-            const response = await fetch(encodeURI(currentItem.file) + '?t=' + Date.now());
+            const response = await fetch(encodeURI(currentItem.file));
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
