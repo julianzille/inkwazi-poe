@@ -127,8 +127,108 @@
                     headings: ["Key Species Notes", "Field Surveys & Sightings"]
                 }
             ]
+        },
+        guiding: {
+            title: "Guiding & Safety",
+            icon: "🧭",
+            targets: [
+                {
+                    id: "guided-walks",
+                    file: "Guiding.md",
+                    name: "Guided Walks Protocol",
+                    icon: "🧭",
+                    headings: ["Packing List", "Guest Experience", "Primary Concern", "Types of Walks", "Tracking", "Defensive Positions", "Field Notes"]
+                },
+                {
+                    id: "rifle-handling",
+                    file: "Rifle Handling.md",
+                    name: "Rifle Handling",
+                    icon: "🎯",
+                    headings: ["Golden Safety Rules", "Rifle", "Ammunition", "Rapid Fire", "Field Practice Notes"]
+                },
+                {
+                    id: "dangerous-animals",
+                    file: "Dangerous Animal Behavior.md",
+                    name: "Dangerous Animal Behavior",
+                    icon: "⚠️",
+                    headings: ["Dangerous Animal Behavior", "Animal Speeds", "Encounter Scenarios", "Field Sightings & Distance Notes"]
+                }
+            ]
+        },
+        ecology: {
+            title: "Botany & Ecology",
+            icon: "🌿",
+            targets: [
+                {
+                    id: "anti-predator",
+                    file: "Anti-predator defense.md",
+                    name: "Anti-Predator Defenses",
+                    icon: "🛡️",
+                    headings: ["Examples", "Field Observations & Notes"]
+                },
+                {
+                    id: "astronomy",
+                    file: "Astronomy.md",
+                    name: "Astronomy & Night Sky",
+                    icon: "🌙",
+                    headings: ["Moon Phases", "Eclipses", "Night Observations & Celestial Notes"]
+                },
+                {
+                    id: "andbeyond",
+                    file: "&Beyond.md",
+                    name: "&Beyond & Phinda Reserve",
+                    icon: "🌍",
+                    headings: ["Phinda", "7 Habitat Types", "Conservation Notes"]
+                }
+            ]
         }
     };
+
+    const ALL_TARGETS = [];
+    Object.keys(CAPTURE_SCHEMA).forEach(catKey => {
+        const cat = CAPTURE_SCHEMA[catKey];
+        cat.targets.forEach(t => {
+            ALL_TARGETS.push({
+                ...t,
+                categoryKey: catKey,
+                categoryTitle: cat.title,
+                categoryIcon: cat.icon,
+                headings: t.headings || cat.defaultHeadings || []
+            });
+        });
+    });
+
+    function getTargetByIdOrFile(idOrFile) {
+        if (!idOrFile) return ALL_TARGETS[0];
+        const clean = idOrFile.toLowerCase().trim().replace(/^#/, '');
+        // 1. Direct match by id
+        let found = ALL_TARGETS.find(t => t.id.toLowerCase() === clean);
+        if (found) return found;
+        // 2. Direct match by file
+        found = ALL_TARGETS.find(t => t.file.toLowerCase() === clean || t.file.toLowerCase().replace(/\.md$/i, '') === clean);
+        if (found) return found;
+        // 3. Match by partial or route ID mapping
+        const aliasMap = {
+            'flora-trees': 'trees-general',
+            'flora-trees-list': 'trees-species-list',
+            'bird-general': 'birds-general',
+            'bird-list': 'birds-checklist',
+            'bird-donkeybridges': 'birds-donkeybridges',
+            'eco-reptiles': 'reptiles',
+            'eco-amphibians': 'amphibians',
+            'eco-arthropods': 'arthropods',
+            'eco-anti-predator': 'anti-predator',
+            'eco-astronomy': 'astronomy',
+            'context-andbeyond': 'andbeyond',
+            'mammal-rhino': 'mammal-rhino-compare'
+        };
+        if (aliasMap[clean]) {
+            found = ALL_TARGETS.find(t => t.id === aliasMap[clean]);
+            if (found) return found;
+        }
+
+        return ALL_TARGETS[0];
+    }
 
     // =========================================================================
     // 2. Base64 UTF-8 Helpers
@@ -324,12 +424,17 @@
         loadConfig() {
             try {
                 const raw = localStorage.getItem(this.storageKey);
-                this.config = raw ? JSON.parse(raw) : {
-                    token: '',
-                    owner: 'julianzille',
-                    repo: 'inkwazi-poe',
-                    branch: 'main',
-                    mode: 'direct' // 'direct' or 'pr'
+                const loaded = raw ? JSON.parse(raw) : {};
+                // Auto-fix if previously corrupted by inkwazi-poe/inkwazi-poe bug
+                if (loaded.owner === 'inkwazi-poe' && (loaded.repo === 'inkwazi-poe' || !loaded.repo)) {
+                    loaded.owner = 'julianzille';
+                }
+                this.config = {
+                    token: loaded.token || '',
+                    owner: loaded.owner || 'julianzille',
+                    repo: loaded.repo || 'inkwazi-poe',
+                    branch: loaded.branch || 'main',
+                    mode: loaded.mode || 'direct' // 'direct' or 'pr'
                 };
             } catch (e) {
                 this.config = {
@@ -596,6 +701,8 @@
     // Export to global window namespace
     global.FieldCapture = {
         SCHEMA: CAPTURE_SCHEMA,
+        ALL_TARGETS,
+        getTargetByIdOrFile,
         MarkdownInjector,
         GitHubClient,
         OutboxManager,

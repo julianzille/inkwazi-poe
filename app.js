@@ -840,9 +840,13 @@
         const captureModal = document.getElementById('capture-modal-container');
         const captureBackdrop = document.getElementById('capture-modal-backdrop');
         const captureCloseBtn = document.getElementById('capture-close-btn');
-        const categoryPills = document.getElementById('capture-category-pills');
+        const targetPill = document.getElementById('capture-target-pill');
+        const targetIcon = document.getElementById('capture-target-icon');
+        const targetName = document.getElementById('capture-target-name');
+        const targetGroup = document.getElementById('capture-target-group');
         const targetSelect = document.getElementById('capture-target-select');
         const headingGroup = document.getElementById('capture-heading-group');
+        const headingChipsContainer = document.getElementById('capture-heading-chips');
         const headingSelect = document.getElementById('capture-heading-select');
         const treeSpeciesGroup = document.getElementById('capture-tree-species-group');
         const treeSearchInput = document.getElementById('capture-tree-search');
@@ -855,6 +859,7 @@
         const sightingBox = document.getElementById('capture-sighting-box');
         const sightingDate = document.getElementById('capture-sighting-date');
         const sightingLocation = document.getElementById('capture-sighting-location');
+        const noteGroup = document.getElementById('capture-note-group');
         const noteLabel = document.getElementById('capture-note-label');
         const noteText = document.getElementById('capture-note-text');
         const previewToggle = document.getElementById('capture-preview-toggle');
@@ -886,8 +891,8 @@
         const settingsSyncOutboxBtn = document.getElementById('settings-sync-outbox-btn');
         const settingsOutboxList = document.getElementById('settings-outbox-list');
 
-        let currentCategoryKey = 'mammals';
         let currentTargetObj = null;
+        let currentSelectedHeading = '';
 
         // Tree species master list for datalist
         const knownTrees = [
@@ -903,102 +908,133 @@
             treeDatalist.innerHTML = knownTrees.map(t => `<option value="${t}">`).join('');
         }
 
-        // 1. Category and Target Selectors
-        function renderCategoryPills() {
-            categoryPills.innerHTML = '';
+        // Populate Target Switcher dropdown
+        function initTargetSelect() {
+            targetSelect.innerHTML = '';
             Object.keys(SCHEMA).forEach(catKey => {
                 const cat = SCHEMA[catKey];
-                const pill = document.createElement('button');
-                pill.type = 'button';
-                pill.className = `category-pill ${catKey === currentCategoryKey ? 'active' : ''}`;
-                pill.dataset.category = catKey;
-                pill.innerHTML = `<span>${cat.icon}</span> <span>${cat.title}</span>`;
-                pill.addEventListener('click', () => selectCategory(catKey));
-                categoryPills.appendChild(pill);
+                const optgroup = document.createElement('optgroup');
+                optgroup.label = `${cat.icon} ${cat.title}`;
+
+                cat.targets.forEach(t => {
+                    const opt = document.createElement('option');
+                    opt.value = t.id;
+                    opt.textContent = `${t.icon || '📄'} ${t.name}`;
+                    optgroup.appendChild(opt);
+                });
+
+                targetSelect.appendChild(optgroup);
+            });
+        }
+        initTargetSelect();
+
+        // Switch Topic pill toggle
+        if (targetPill) {
+            targetPill.addEventListener('click', () => {
+                targetGroup.classList.toggle('hidden');
             });
         }
 
-        function selectCategory(catKey, preselectedTargetId) {
-            currentCategoryKey = catKey;
-            categoryPills.querySelectorAll('.category-pill').forEach(p => {
-                p.classList.toggle('active', p.dataset.category === catKey);
-            });
-
-            const cat = SCHEMA[catKey];
-            targetSelect.innerHTML = '';
-
-            cat.targets.forEach(t => {
-                const opt = document.createElement('option');
-                opt.value = t.id;
-                opt.textContent = `${t.icon || '📄'} ${t.name}`;
-                targetSelect.appendChild(opt);
-            });
-
-            if (preselectedTargetId) {
-                targetSelect.value = preselectedTargetId;
+        targetSelect.addEventListener('change', () => {
+            const selected = window.FieldCapture.ALL_TARGETS.find(t => t.id === targetSelect.value);
+            if (selected) {
+                renderFormForTarget(selected);
+                targetGroup.classList.add('hidden');
             }
+        });
 
-            selectTarget(targetSelect.value);
-        }
+        // Render form dynamically for target
+        function renderFormForTarget(target) {
+            currentTargetObj = target;
+            targetSelect.value = target.id;
+            targetIcon.textContent = target.icon || '📄';
+            targetName.textContent = target.name;
 
-        function selectTarget(targetId) {
-            const cat = SCHEMA[currentCategoryKey];
-            currentTargetObj = cat.targets.find(t => t.id === targetId) || cat.targets[0];
-            if (!currentTargetObj) return;
+            // Reset inputs
+            treeSearchInput.value = '';
+            birdInput.value = '';
+            mnemonicInput.value = '';
 
-            // Reset visibility
-            headingGroup.classList.remove('hidden');
-            treeSpeciesGroup.classList.add('hidden');
-            birdInputGroup.classList.add('hidden');
-            mnemonicGroup.classList.add('hidden');
-            sightingBox.classList.add('hidden');
-            noteLabel.textContent = "Field Observation Note";
-            noteText.placeholder = "Enter findings, observations, or biological details...";
-
-            const targetType = currentTargetObj.type || 'heading_based';
+            const targetType = target.type || 'heading_based';
 
             if (targetType === 'species_bullet') {
+                // Trees list
                 headingGroup.classList.add('hidden');
+                birdInputGroup.classList.add('hidden');
+                mnemonicGroup.classList.add('hidden');
+                sightingBox.classList.add('hidden');
                 treeSpeciesGroup.classList.remove('hidden');
+                noteGroup.classList.remove('hidden');
                 noteLabel.textContent = "Species Field Note";
-                noteText.placeholder = "e.g. Abundant canopy tree in Sand Forest; wine-red pods...";
+                noteText.placeholder = "e.g. Canopy tree in Sand Forest; wine-red pods...";
             } else if (targetType === 'bird_checklist') {
+                // Bird Checklist
                 headingGroup.classList.add('hidden');
+                treeSpeciesGroup.classList.add('hidden');
+                mnemonicGroup.classList.add('hidden');
+                sightingBox.classList.add('hidden');
+                noteGroup.classList.add('hidden');
                 birdInputGroup.classList.remove('hidden');
                 birdLabel.textContent = "Bird Species Name";
                 birdInput.placeholder = "e.g. Narina Trogon";
-                noteLabel.textContent = "Additional Notes (Optional)";
-                noteText.placeholder = "Optional sighting or habitat notes...";
             } else if (targetType === 'donkeybridge') {
+                // Donkeybridge
                 headingGroup.classList.add('hidden');
+                treeSpeciesGroup.classList.add('hidden');
+                sightingBox.classList.add('hidden');
+                noteGroup.classList.add('hidden');
                 birdInputGroup.classList.remove('hidden');
-                birdLabel.textContent = "Bird Species";
-                birdInput.placeholder = "e.g. Emerald-spotted Wood Dove";
                 mnemonicGroup.classList.remove('hidden');
-                noteLabel.textContent = "Additional Notes (Optional)";
+                birdLabel.textContent = "Bird Species Name";
+                birdInput.placeholder = "e.g. Emerald-spotted Wood Dove";
+                mnemonicInput.placeholder = "e.g. 'ko-koweet-koweet' or high pitched whistle";
             } else {
-                // Heading based
-                headingSelect.innerHTML = '';
-                const headings = currentTargetObj.headings || cat.defaultHeadings || [];
-                headings.forEach(h => {
-                    const opt = document.createElement('option');
-                    opt.value = h;
-                    opt.textContent = h;
-                    headingSelect.appendChild(opt);
-                });
-                onHeadingChange();
+                // Heading based (Mammals, Trees General, Birds General, Reptiles, Amphibians, Arthropods)
+                treeSpeciesGroup.classList.add('hidden');
+                birdInputGroup.classList.add('hidden');
+                mnemonicGroup.classList.add('hidden');
+                headingGroup.classList.remove('hidden');
+                noteGroup.classList.remove('hidden');
+                noteLabel.textContent = "Observation / Finding";
+                noteText.placeholder = "Enter findings, observations, or biological details...";
+
+                renderHeadingChips(target.headings || []);
             }
 
             updatePreview();
         }
 
-        function onHeadingChange() {
-            const heading = headingSelect.value;
+        function renderHeadingChips(headings) {
+            headingChipsContainer.innerHTML = '';
+            if (headings.length === 0) return;
+
+            // Pick default heading (e.g. "Field Sightings" or first heading)
+            let defaultHeading = headings.includes(currentSelectedHeading) ? currentSelectedHeading : headings[0];
+            currentSelectedHeading = defaultHeading;
+
+            headings.forEach(h => {
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                chip.className = `heading-chip ${h === currentSelectedHeading ? 'active' : ''}`;
+                chip.textContent = h;
+                chip.addEventListener('click', () => {
+                    currentSelectedHeading = h;
+                    headingChipsContainer.querySelectorAll('.heading-chip').forEach(c => {
+                        c.classList.toggle('active', c.textContent === h);
+                    });
+                    onHeadingSelected(h);
+                });
+                headingChipsContainer.appendChild(chip);
+            });
+
+            onHeadingSelected(currentSelectedHeading);
+        }
+
+        function onHeadingSelected(heading) {
             const isSighting = /sighting|encounter|survey/i.test(heading);
             sightingBox.classList.toggle('hidden', !isSighting);
 
             if (isSighting && !sightingDate.value) {
-                // Auto-fill today's date
                 const today = new Date();
                 sightingDate.value = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
             }
@@ -1006,8 +1042,6 @@
             updatePreview();
         }
 
-        targetSelect.addEventListener('change', () => selectTarget(targetSelect.value));
-        headingSelect.addEventListener('change', onHeadingChange);
         treeSearchInput.addEventListener('input', updatePreview);
         birdInput.addEventListener('input', updatePreview);
         mnemonicInput.addEventListener('input', updatePreview);
@@ -1015,7 +1049,7 @@
         sightingLocation.addEventListener('input', updatePreview);
         noteText.addEventListener('input', updatePreview);
 
-        // 2. Format Toolbar
+        // Format Toolbar
         document.querySelectorAll('.fmt-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const fmt = btn.dataset.fmt;
@@ -1042,7 +1076,7 @@
             });
         });
 
-        // 3. Live Markdown Preview
+        // Live Markdown Preview
         previewToggle.addEventListener('click', () => {
             const isOpen = previewCard.classList.toggle('hidden');
             previewArrow.classList.toggle('open', !isOpen);
@@ -1085,7 +1119,7 @@
                     commitMsg: `field-note(birds): add call mnemonic for ${species}`
                 };
             } else {
-                const heading = headingSelect.value;
+                const heading = currentSelectedHeading || (currentTargetObj.headings && currentTargetObj.headings[0]) || 'Notes';
                 const isSighting = /sighting|encounter|survey/i.test(heading);
                 let formattedNote = '';
 
@@ -1118,7 +1152,7 @@
             if (!payload) return;
 
             if (payload.type === 'species_bullet') {
-                previewPath.innerHTML = `Target: <code>${payload.targetFile}</code> &rarr; Species: <b>${payload.speciesName || '(select species)'}</b>`;
+                previewPath.innerHTML = `Target: <code>${payload.targetFile}</code> &rarr; Species: <b>${payload.speciesName || '(select tree)'}</b>`;
             } else if (payload.type === 'bird_checklist' || payload.type === 'donkeybridge') {
                 previewPath.innerHTML = `Target: <code>${payload.targetFile}</code>`;
             } else {
@@ -1133,39 +1167,15 @@
             }
         }
 
-        // 4. Modal Open & Contextual Auto-Selection
+        // Open modal & contextually lock target
         function openCaptureModal() {
             statusMsg.classList.add('hidden');
-            renderCategoryPills();
+            targetGroup.classList.add('hidden');
 
-            // Check current active page to intelligently pre-select target
             const hash = window.location.hash.replace(/^#/, '');
-            let preCat = 'mammals';
-            let preTargetId = null;
+            const target = window.FieldCapture.getTargetByIdOrFile(hash);
+            renderFormForTarget(target);
 
-            if (hash.startsWith('mammal-')) {
-                preCat = 'mammals';
-                preTargetId = hash === 'mammal-rhino' ? 'mammal-rhino-compare' : hash;
-            } else if (hash.startsWith('flora-trees')) {
-                preCat = 'trees';
-                preTargetId = hash === 'flora-trees-list' ? 'trees-species-list' : 'trees-general';
-            } else if (hash.startsWith('bird-')) {
-                preCat = 'birds';
-                if (hash === 'bird-list') preTargetId = 'birds-checklist';
-                else if (hash === 'bird-donkeybridges') preTargetId = 'birds-donkeybridges';
-                else preTargetId = 'birds-general';
-            } else if (hash === 'eco-reptiles') {
-                preCat = 'herps_bugs';
-                preTargetId = 'reptiles';
-            } else if (hash === 'eco-amphibians') {
-                preCat = 'herps_bugs';
-                preTargetId = 'amphibians';
-            } else if (hash === 'eco-arthropods') {
-                preCat = 'herps_bugs';
-                preTargetId = 'arthropods';
-            }
-
-            selectCategory(preCat, preTargetId);
             captureModal.classList.add('active');
             captureModal.setAttribute('aria-hidden', 'false');
         }
@@ -1180,39 +1190,61 @@
         captureCloseBtn.addEventListener('click', closeCaptureModal);
         captureBackdrop.addEventListener('click', closeCaptureModal);
 
-        // 5. Submit Note Action
+        // Submit Note Action
         submitBtn.addEventListener('click', async () => {
             const payload = buildPayload();
             if (!payload) return;
 
-            // Basic validation
-            if (payload.type === 'species_bullet' && !payload.speciesName) {
-                alert("Please select or enter a Tree species name.");
-                treeSearchInput.focus();
-                return;
-            }
-            if ((payload.type === 'bird_checklist' || payload.type === 'donkeybridge') && !payload.birdSpecies) {
-                alert("Please enter a Bird species name.");
-                birdInput.focus();
-                return;
-            }
-            if (payload.type === 'heading_based' && !noteText.value.trim() && !/sighting/i.test(payload.heading)) {
-                alert("Please enter a note before committing.");
-                noteText.focus();
-                return;
+            // Target-specific validation ONLY
+            if (payload.type === 'species_bullet') {
+                if (!payload.speciesName) {
+                    showToast("Please select or type a Tree species.", "warning");
+                    treeSearchInput.focus();
+                    return;
+                }
+                if (!noteText.value.trim()) {
+                    showToast("Please enter a note for this tree.", "warning");
+                    noteText.focus();
+                    return;
+                }
+            } else if (payload.type === 'bird_checklist') {
+                if (!payload.birdSpecies) {
+                    showToast("Please enter a Bird species name.", "warning");
+                    birdInput.focus();
+                    return;
+                }
+            } else if (payload.type === 'donkeybridge') {
+                if (!payload.birdSpecies) {
+                    showToast("Please enter a Bird species name.", "warning");
+                    birdInput.focus();
+                    return;
+                }
+                if (!payload.mnemonic) {
+                    showToast("Please enter the call sound / mnemonic.", "warning");
+                    mnemonicInput.focus();
+                    return;
+                }
+            } else {
+                // Heading based
+                const isSighting = /sighting|encounter|survey/i.test(payload.heading);
+                if (!noteText.value.trim() && !isSighting) {
+                    showToast("Please enter a note before saving.", "warning");
+                    noteText.focus();
+                    return;
+                }
             }
 
             // Check GitHub token
             if (!ghClient.hasToken()) {
                 openSettingsModal();
-                showToast("Please enter your GitHub Personal Access Token first.", "warning", 5000);
+                showToast("Please enter your GitHub Token first.", "warning", 5000);
                 return;
             }
 
             // UI loading state
             submitBtn.disabled = true;
             submitSpinner.classList.remove('hidden');
-            submitText.textContent = "Committing to GitHub...";
+            submitText.textContent = "Saving to GitHub...";
             statusMsg.classList.add('hidden');
 
             try {
@@ -1235,7 +1267,7 @@
                     showToast(`Pull Request created: #${prResult.number}`, "success", 4500);
                 } else {
                     await ghClient.directCommit(payload.targetFile, updatedContent, sha, payload.commitMsg);
-                    showToast("Note committed directly to GitHub!", "success", 4000);
+                    showToast("Note committed to portfolio!", "success", 4000);
                 }
 
                 // Reset form
@@ -1243,7 +1275,7 @@
                 sightingLocation.value = '';
                 closeCaptureModal();
 
-                // Reload current view if currently viewing target file
+                // Reload current view if viewing target file
                 const currentItem = itemById.get(window.location.hash.replace(/^#/, ''));
                 if (currentItem && currentItem.file === payload.targetFile) {
                     loadPage(currentItem.id);
@@ -1251,18 +1283,17 @@
 
             } catch (err) {
                 console.error("Direct commit error:", err);
-                // Save to outbox on failure
                 outbox.enqueue(payload);
-                showToast(`Offline/Error: Saved to Outbox (${err.message})`, "warning", 5000);
+                showToast(`Saved to Outbox (${err.message})`, "warning", 5000);
                 closeCaptureModal();
             } finally {
                 submitBtn.disabled = false;
                 submitSpinner.classList.add('hidden');
-                submitText.textContent = "🚀 Commit to Portfolio";
+                submitText.textContent = "Save Note";
             }
         });
 
-        // 6. Force Save to Outbox Button
+        // Force Save to Outbox Button
         outboxBtn.addEventListener('click', () => {
             const payload = buildPayload();
             if (!payload) return;
@@ -1272,10 +1303,27 @@
             closeCaptureModal();
         });
 
-        // 7. Settings Modal Controller
+        function parseRepoInput(value) {
+            const raw = (value || '').trim();
+            if (!raw) {
+                return { owner: 'julianzille', repo: 'inkwazi-poe' };
+            }
+            const parts = raw.split('/').map(p => p.trim()).filter(Boolean);
+            if (parts.length >= 2) {
+                return { owner: parts[0], repo: parts[1] };
+            }
+            return {
+                owner: ghClient.config.owner && ghClient.config.owner !== 'inkwazi-poe' ? ghClient.config.owner : 'julianzille',
+                repo: parts[0] || 'inkwazi-poe'
+            };
+        }
+
+        // Settings Modal Controller
         function openSettingsModal() {
             ghTokenInput.value = ghClient.config.token || '';
-            ghRepoInput.value = ghClient.config.repo || 'julianzille/inkwazi-poe';
+            const owner = (ghClient.config.owner && ghClient.config.owner !== 'inkwazi-poe') ? ghClient.config.owner : 'julianzille';
+            const repo = ghClient.config.repo || 'inkwazi-poe';
+            ghRepoInput.value = `${owner}/${repo}`;
             ghBranchInput.value = ghClient.config.branch || 'main';
             if (ghClient.config.mode === 'pr') {
                 modePrRadio.checked = true;
@@ -1305,12 +1353,14 @@
             connectionStatusPill.className = 'connection-status-pill';
             connectionStatusPill.textContent = 'Testing connection...';
             try {
-                // Save current values first
+                const { owner, repo } = parseRepoInput(ghRepoInput.value);
+                const branch = ghBranchInput.value.trim() || 'main';
+
                 ghClient.saveConfig({
                     token: ghTokenInput.value.trim(),
-                    repo: ghRepoInput.value.trim().split('/')[1] || ghRepoInput.value.trim(),
-                    owner: ghRepoInput.value.trim().split('/')[0] || 'julianzille',
-                    branch: ghBranchInput.value.trim()
+                    owner: owner,
+                    repo: repo,
+                    branch: branch
                 });
 
                 const info = await ghClient.testConnection();
@@ -1325,10 +1375,7 @@
         });
 
         saveSettingsBtn.addEventListener('click', () => {
-            const fullRepo = ghRepoInput.value.trim();
-            const parts = fullRepo.split('/');
-            const owner = parts.length > 1 ? parts[0] : 'julianzille';
-            const repo = parts.length > 1 ? parts[1] : fullRepo;
+            const { owner, repo } = parseRepoInput(ghRepoInput.value);
 
             ghClient.saveConfig({
                 token: ghTokenInput.value.trim(),
@@ -1352,7 +1399,7 @@
             }
         });
 
-        // 8. Outbox UI & Sync Handling
+        // Outbox UI & Sync Handling
         function updateOutboxBadge(count) {
             if (count > 0) {
                 fabBadge.classList.remove('hidden');
@@ -1421,14 +1468,12 @@
         outboxSyncBtn.addEventListener('click', triggerOutboxSync);
         settingsSyncOutboxBtn.addEventListener('click', triggerOutboxSync);
 
-        // Auto-sync when internet reconnection detected
         window.addEventListener('online', () => {
             if (outbox.getPendingCount() > 0 && ghClient.hasToken()) {
                 triggerOutboxSync();
             }
         });
 
-        // Initialize badges
         updateOutboxBadge(outbox.getPendingCount());
     }
 

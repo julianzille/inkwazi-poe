@@ -1537,10 +1537,18 @@ body {
 
 /* Topbar Action Buttons */
 .capture-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: rgba(31, 71, 51, 0.08);
     color: var(--accent-green);
     border-color: rgba(31, 71, 51, 0.2);
-    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .capture-btn:hover {
@@ -1550,7 +1558,12 @@ body {
 }
 
 .settings-btn {
-    padding: 0.45rem 0.6rem;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .outbox-btn {
@@ -1558,6 +1571,10 @@ body {
     border-color: #f5d697;
     color: #8c5809;
     position: relative;
+    height: 36px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .outbox-btn .outbox-badge {
@@ -1626,7 +1643,7 @@ body {
     position: relative;
     background: var(--bg-card);
     width: 100%;
-    max-width: 620px;
+    max-width: 580px;
     max-height: 90vh;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-light);
@@ -1650,32 +1667,41 @@ body {
 }
 
 .capture-header {
-    padding: 1.25rem 1.5rem 1rem;
+    padding: 1.1rem 1.4rem 0.9rem;
     border-bottom: 1px solid var(--border-light);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     background: var(--bg-card-subtle);
 }
 
-.capture-title-wrap h2 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    color: var(--text-main);
-    margin-top: 2px;
+.capture-target-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(31, 71, 51, 0.08);
+    border: 1px solid rgba(31, 71, 51, 0.2);
+    border-radius: 24px;
+    padding: 6px 14px;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--accent-green);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.capture-badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    background: rgba(31, 71, 51, 0.1);
-    color: var(--accent-green);
-    padding: 2px 8px;
-    border-radius: 20px;
-    border: 1px solid rgba(31, 71, 51, 0.25);
+.capture-target-pill:hover {
+    background: rgba(197, 155, 39, 0.15);
+    border-color: var(--accent-gold);
+    color: var(--text-main);
+}
+
+.target-chevron {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: 2px;
 }
 
 .modal-close-btn {
@@ -1694,7 +1720,7 @@ body {
 }
 
 .capture-body {
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 1.4rem;
     overflow-y: auto;
     flex: 1;
     display: flex;
@@ -1702,40 +1728,37 @@ body {
     gap: 1.1rem;
 }
 
-/* Category Pills */
-.category-pills {
+/* Heading Chips */
+.heading-chips-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
-.category-pill {
-    padding: 6px 14px;
-    border-radius: 24px;
+.heading-chip {
     background: var(--bg-card-subtle);
     border: 1px solid var(--border-light);
-    color: var(--text-main);
-    font-size: 0.85rem;
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 0.83rem;
     font-family: var(--font-body);
     font-weight: 500;
+    color: var(--text-main);
     cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    transition: all 0.18s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
-.category-pill:hover {
+.heading-chip:hover {
     border-color: var(--accent-gold);
     background: rgba(197, 155, 39, 0.08);
 }
 
-.category-pill.active {
+.heading-chip.active {
     background: var(--accent-green);
     color: #ffffff;
     border-color: var(--accent-green);
-    box-shadow: 0 2px 8px rgba(31, 71, 51, 0.25);
+    box-shadow: 0 2px 8px rgba(31, 71, 51, 0.2);
 }
 
 /* Form Elements */
@@ -2189,14 +2212,14 @@ body {
         gap: 8px;
     }
 
-    .category-pills {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 4px;
-        -webkit-overflow-scrolling: touch;
+    .heading-chips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
     }
 
-    .category-pill {
-        flex-shrink: 0;
+    .heading-chip {
+        padding: 7px 12px;
+        font-size: 0.82rem;
     }
 }
