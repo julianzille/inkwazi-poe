@@ -119,3 +119,7 @@ Weeping Boer-Bean (*Schotia brachypetala*)
 Natal mahogany (*Trichilia emetica*)
 - evergreen
 - dark green glossy leaves
+
+Candy striped Crinum
+- Aka candy striped vlei lily.
+Flourishes after rain.
