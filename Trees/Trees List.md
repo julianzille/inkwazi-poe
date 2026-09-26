@@ -120,6 +120,6 @@ Natal mahogany (*Trichilia emetica*)
 - evergreen
 - dark green glossy leaves
 
-Candy striped Crinum
+Candy striped Crinum (*Crinum stuhlmannii*)
 - Aka candy striped vlei lily.
-Flourishes after rain.
+- Flourishes after rain.
